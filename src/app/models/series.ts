@@ -6,10 +6,10 @@
     id: string;
     // シリーズ名：妖炎魔女、アビス・・・
     name: string;
-    // セット効果
-    exEffect: string;
     // 存在する部位
-    partList: string[];
+    noPartsList: string[];
     // 装備可能職業
     job: string[];
+    // セット効果
+    exEffect: string;
 }
