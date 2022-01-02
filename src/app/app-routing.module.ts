@@ -1,7 +1,11 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-const routes: Routes = [];
+import { ArmorAddComponent } from './armor-add/armor-add.component';
+
+const routes: Routes = [
+  { path: '', component: ArmorAddComponent },
+];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

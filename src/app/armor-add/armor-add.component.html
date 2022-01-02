@@ -1,1 +1,5 @@
-<p>armor-add works!</p>
+<header>
+    <section id="completed">
+        <button type="button" class="completed" [disabled]="!isCompleted()" (click)="onClickComplete()"><i class="far fa-check-circle"></i>入力完了</button>
+    </section>
+</header>

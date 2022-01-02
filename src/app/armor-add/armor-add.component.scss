@@ -1,0 +1,21 @@
+.container {
+	display: flex;
+	flex-direction: column;
+}
+
+#completed button {
+	color: inherit;
+	text-shadow: inherit;
+	width: 7.5rem;
+	background-color: #990000;
+	padding: 0.5em;
+	border-radius: 0.5em;
+	text-align: center;
+	border: none;
+}
+
+#completed button[type="button"]:disabled {
+	color: #b80202;
+	text-shadow: none;
+
+}
