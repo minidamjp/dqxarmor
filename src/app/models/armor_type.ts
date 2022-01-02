@@ -1,7 +1,7 @@
 /**
  * 装備のデータ
  */
- export interface Armor {
+ export interface ArmorType {
     // 装備可能レベル
     level: number;
     // 部位INDEX 0: 頭 1: からだ上 2: からだ下 3: 腕  4:足
@@ -12,6 +12,5 @@
     id: string;
     // 装備名
     name: string;
-    // メモ書く欄　必須ではない
-    note?: string|null;
+
 }
