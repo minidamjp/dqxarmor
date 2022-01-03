@@ -4,12 +4,12 @@
     </section>
 </header>
 <section id="level-button" [class.selected]="selectedLevel!==0">
-    <div class="container">
-        <h2>レベル</h2>
+    <fieldset class="container">
+        <legend><h2>レベル</h2></legend>
         <div class="buttons">
             <button type="button" [class.selected]="level===selectedLevel" (click)="selectLevel(level)" *ngFor="let level of masterDataService.getLevels()">{{level}}</button>
         </div>
-    </div>
+    </fieldset>
 </section>
 <section id="series-button">
     <div class="container">
