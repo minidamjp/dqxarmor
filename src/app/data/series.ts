@@ -1,6 +1,6 @@
 import { Series } from '../models/series';
 
-export const MaumetGroups: Series[] = [
+export const SeriesList: Series[] = [
     {id: '001', name: '大戦鬼', noPartsList: ['2'], job: ['00,07,08,19'], exEffect: '開戦時50％で攻撃力+60 仲間が死んだら50％でためる'},
     {id: '002', name: 'トーテム', noPartsList: [], job: ['03,06,12,14'], exEffect: '魔物へ会心と呪文暴走ダメージ+100'},
     {id: '003', name: 'クイック', noPartsList: [], job: ['04,08,13,20'], exEffect: 'コマンド間隔-0.5秒 開戦時100％で早詠みの杖'},

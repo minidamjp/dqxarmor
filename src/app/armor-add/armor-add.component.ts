@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
+import { MasterDataService } from '../services/master-data.service';
+
 @Component({
   selector: 'app-armor-add',
   templateUrl: './armor-add.component.html',
@@ -9,7 +11,9 @@ export class ArmorAddComponent implements OnInit {
 
   keyTime: string|null = null;
 
-  constructor() { }
+  constructor(
+    public masterDataService: MasterDataService,
+  ) { }
 
   ngOnInit(): void {
   }

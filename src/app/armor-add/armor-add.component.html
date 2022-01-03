@@ -3,3 +3,21 @@
         <button type="button" class="completed" [disabled]="!isCompleted()" (click)="onClickComplete()"><i class="far fa-check-circle"></i>入力完了</button>
     </section>
 </header>
+<section id="level-button">
+    <div class="container">
+        <h2>レベル</h2>
+        <button type="button" *ngFor="let level of masterDataService.getLevels()">{{level}}</button>
+    </div>
+</section>
+<section id="series-button">
+    <div class="container">
+        <h2>装備名</h2>
+        <button type="button" *ngFor="let series of masterDataService.getSeriesList()">{{series.name}}</button>
+    </div>
+</section>
+<section id="parts-button">
+    <div class="container">
+        <h2>装備名</h2>
+        <button type="button" *ngFor="let part of masterDataService.getParts()">{{part.name}}</button>
+    </div>
+</section>

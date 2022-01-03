@@ -1,6 +1,6 @@
 import { Job } from '../models/job';
 
-export const MaumetGroups: Job[] = [
+export const Jobs: Job[] = [
     {id: '00', abbr: '戦士', name: '戦士'},
     {id: '01', abbr: '僧侶',  name: '僧侶'},
     {id: '02', abbr: '魔法',  name: '魔法使い'},
