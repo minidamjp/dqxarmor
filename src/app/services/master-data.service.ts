@@ -12,7 +12,7 @@ export class MasterDataService {
 
   constructor() { }
 
-// armorsのデータの中からレベルをもってきてダブり外して逆順にして返す
+// シリーズのデータの中からレベルをもってきてダブり外して逆順にして返す
   getLevels(): number[] {
     const levels: number[] = [];
     for (const series of SeriesList){

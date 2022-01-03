@@ -9,6 +9,7 @@
 
 button{
 	border-radius: 0.6em;
+	border: none;
 }
 
 h2{
@@ -42,6 +43,50 @@ legend{
 	margin: 0.5em;
 	background-color: rgb(122, 122, 122);
 	color: #fff;
+	width: 3em;
+	padding: 0.5em;
+}
+
+#series-button.selected button{
+	display: none;
+	&.selected {
+    	display: block;
+		background-color: #f5ae51;
+	}
+}
+
+#series-button.level-matched button{
+	display: none;
+	&.level-matched {
+		display: block;
+		&.selected {
+			display: block;
+			background-color: #f5ae51;
+		}
+	}
+}
+
+#series-button button {
+	margin: 0.5em;
+	background-color: rgb(122, 122, 122);
+	color: #fff;
+	width: 7em;
+	padding: 0.5em;
+}
+
+#parts-button.selected button{
+	&.selected {
+    	display: block;
+		background-color: #f5ae51;
+	}
+}
+
+#parts-button button {
+	margin: 0.5em;
+	background-color: rgb(122, 122, 122);
+	color: #fff;
+	width: 5em;
+	padding: 0.5em;
 }
 
 #completed button {

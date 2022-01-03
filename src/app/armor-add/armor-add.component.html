@@ -11,15 +11,19 @@
         </div>
     </fieldset>
 </section>
-<section id="series-button">
-    <div class="container">
-        <h2>装備名</h2>
-        <button type="button" *ngFor="let series of masterDataService.getSeriesList()">{{series.name}}</button>
-    </div>
+<section id="series-button" [class.selected]="selectedId!==''" [class.level-matched]="selectedLevel!==0">
+    <fieldset class="container">
+        <legend><h2>装備名</h2></legend>
+        <div class="buttons">
+            <button type="button"  [class.selected]='series.id===selectedId' [class.level-matched]="selectedLevel===series.level" (click)="selectSeriesId(series.id,series.level)" *ngFor="let series of masterDataService.getSeriesList()">{{series.name}}</button>
+        </div>
+    </fieldset>
 </section>
-<section id="parts-button">
-    <div class="container">
-        <h2>装備名</h2>
-        <button type="button" *ngFor="let part of masterDataService.getParts()">{{part.name}}</button>
-    </div>
+<section id="parts-button" [class.selected]="selectedPartId!==''">
+    <fieldset class="container">
+        <legend><h2>装備部位</h2></legend>
+        <div class="buttons">
+            <button type="button" [class.selected]='part.id===selectedPartId' (click)="selectPartId(part.id)"  *ngFor="let part of masterDataService.getParts()">{{part.name}}</button>
+        </div>
+    </fieldset>
 </section>
