@@ -4,6 +4,8 @@
  export interface Series {
     // シリーズを識別するID
     id: string;
+    // 装備可能レベル
+    level: number;
     // シリーズ名：妖炎魔女、アビス・・・
     name: string;
     // 存在する部位

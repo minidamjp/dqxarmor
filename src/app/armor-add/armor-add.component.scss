@@ -1,5 +1,45 @@
 .container {
+	border: 3.5px solid #fff;
+	border-radius: 0.5em;
+	position: relative;
+	margin-top: 3em;
+	top: -0.5em;
+}
+
+h2{
+	margin-right: 0.5em;
+	position: absolute;
+	top: -1.75em;
+	background-color: #9f845c;
+	left: 1em;
+	padding-left: 0.5em;
+	padding-right: 0.5em;
+}
+
+button{
+	border-radius: 0.6em;
+}
+
+.buttons{
 	display: flex;
+	align-content: flex-start;
+	flex-wrap: wrap;
+	align-items: center;
+	padding: 0.5em;
+}
+
+#level-button.selected button{
+	display: none;
+	&.selected {
+    	display: block;
+		background-color: #f5ae51;
+	}
+}
+
+#level-button button {
+	margin: 0.5em;
+	background-color: rgb(122, 122, 122);
+	color: #fff;
 }
 
 #completed button {

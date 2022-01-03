@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 
-import { ArmorTypes } from '../data/armors';
 import { Parts } from '../data/parts';
 import { SeriesList } from '../data/series';
 import { Part } from '../models/part';
@@ -16,9 +15,9 @@ export class MasterDataService {
 // armorsのデータの中からレベルをもってきてダブり外して逆順にして返す
   getLevels(): number[] {
     const levels: number[] = [];
-    for (const armorType of ArmorTypes){
-      if(!levels.includes(armorType.level)){
-        levels.push(armorType.level);
+    for (const series of SeriesList){
+      if(!levels.includes(series.level)){
+        levels.push(series.level);
       }
     }
     levels.sort((a, b) => (b - a));
