@@ -2,7 +2,7 @@
 	border: 3.5px solid #fff;
 	border-radius: 0.5em;
 	position: relative;
-	margin-top: 3em;
+	margin-top: 1.5em;
 	top: -0.5em;
 	padding: 0;
 }
@@ -78,6 +78,9 @@ legend{
 	&.selected {
     	display: block;
 		background-color: #f5ae51;
+		&.hidden {
+			display: none;
+		}
 	}
 }
 
@@ -87,6 +90,9 @@ legend{
 	color: #fff;
 	width: 5em;
 	padding: 0.5em;
+	&.hidden {
+	    display: none;
+	}
 }
 
 #completed button {

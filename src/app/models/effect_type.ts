@@ -1,13 +1,16 @@
+import { Enchant } from './enchant';
+
 /**
  * 装備の錬金効果についてのデータ
  */
- export interface EffectType {
-    // 効果種類INDEX
+export interface EffectType {
+    // 錬金効果がどれかID
     id: string;
     // 効果名
     name: string;
-    // 効果がつく部位
-    partIdList: string[];
-    // 効果のパーセンテージテーブルがどれか
-    enchantTable: string;
+    // 表記名
+    displayName: string;
+    // 錬金数値
+    enchantList: Enchant[];
 }
+

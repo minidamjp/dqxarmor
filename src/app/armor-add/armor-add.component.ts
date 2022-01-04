@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 import { SeriesList } from '../data/series';
+import { Series } from '../models/series';
 import { MasterDataService } from '../services/master-data.service';
 
 @Component({
@@ -12,7 +13,7 @@ export class ArmorAddComponent implements OnInit {
 
   keyTime: string|null = null;
   selectedLevel = 0;
-  selectedId = '';
+  selectedSeries: Series|null = null;
   selectedPartId = '';
 
 
@@ -40,10 +41,10 @@ export class ArmorAddComponent implements OnInit {
   selectLevel(level: number): void {
     if (this.selectedLevel === level){
       this.selectedLevel = 0;
-      this.selectedId = '';
+      this.selectedSeries = null;
     }else{
       this.selectedLevel = level;
-      this.selectedId = '';
+      this.selectedSeries = null;
     }
   }
 
@@ -52,13 +53,13 @@ export class ArmorAddComponent implements OnInit {
 // もし同じならば２連続同じ装備を選択しているので選択解除としワークフィールドを空にする
 // 異なるならば１度目の押下なので選択として該当の装備のみ表示し、他の装備は非表示にする
 // ついでにワークフィールドに退避する
-  selectSeriesId(seriesId: string, seriesLevel: number): void {
-    if (this.selectedId === seriesId){
-      this.selectedId = '';
+  selectSeries(series: Series): void {
+    if (this.selectedSeries?.id === series.id){
+      this.selectedSeries = null;
       this.selectedLevel = 0;
     }else{
-      this.selectedId = seriesId;
-      this.selectedLevel = seriesLevel;
+      this.selectedSeries = series;
+      this.selectedLevel = series.level;
     }
   }
 

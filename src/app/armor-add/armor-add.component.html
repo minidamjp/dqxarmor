@@ -11,11 +11,11 @@
         </div>
     </fieldset>
 </section>
-<section id="series-button" [class.selected]="selectedId!==''" [class.level-matched]="selectedLevel!==0">
+<section id="series-button" [class.selected]="selectedSeries!==null" [class.level-matched]="selectedLevel!==0">
     <fieldset class="container">
         <legend><h2>装備名</h2></legend>
         <div class="buttons">
-            <button type="button"  [class.selected]='series.id===selectedId' [class.level-matched]="selectedLevel===series.level" (click)="selectSeriesId(series.id,series.level)" *ngFor="let series of masterDataService.getSeriesList()">{{series.name}}</button>
+            <button type="button"  [class.selected]="series.id===selectedSeries?.id" [class.level-matched]="series.level===selectedLevel" (click)="selectSeries(series)" *ngFor="let series of masterDataService.getSeriesList()">{{series.name}}</button>
         </div>
     </fieldset>
 </section>
@@ -23,7 +23,7 @@
     <fieldset class="container">
         <legend><h2>装備部位</h2></legend>
         <div class="buttons">
-            <button type="button" [class.selected]='part.id===selectedPartId' (click)="selectPartId(part.id)"  *ngFor="let part of masterDataService.getParts()">{{part.name}}</button>
+            <button type="button" [class.hidden]="selectedSeries!=null && selectedSeries.noPartsList.includes(part.id)" [class.selected]='part.id===selectedPartId' (click)="selectPartId(part.id)"  *ngFor="let part of masterDataService.getParts()">{{part.name}}</button>
         </div>
     </fieldset>
 </section>
