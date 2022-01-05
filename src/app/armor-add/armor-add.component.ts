@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
-import { SeriesList } from '../data/series';
+import { EffectType } from '../models/effect_type';
 import { Part } from '../models/part';
 import { Series } from '../models/series';
 import { MasterDataService } from '../services/master-data.service';
@@ -15,8 +15,8 @@ export class ArmorAddComponent implements OnInit {
   keyTime: string|null = null;
   selectedLevel = 0;
   selectedSeries: Series|null = null;
-  selectedPartId = '';
   selectedPart: Part|null = null;
+  selectedEffectType: EffectType|null = null;
 
 
   constructor(
@@ -70,6 +70,14 @@ export class ArmorAddComponent implements OnInit {
       this.selectedPart = null;
     }else{
       this.selectedPart = part;
+    }
+  }
+
+  selectEffectType(effectType: EffectType): void {
+    if (this.selectedEffectType?.id === effectType.id){
+      this.selectedEffectType = null;
+    }else{
+      this.selectedEffectType = effectType;
     }
   }
 

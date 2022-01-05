@@ -41,7 +41,10 @@ export class MasterDataService {
 // パーツ（部位）が指定されたらその部位の部位マスターを持ってくる
 // 空っぽのEffectType形式のeffectTypesというフィールドを作る
 // パーツ（部位）マスターからもってきたeffectTypeIdに
-// 錬金効果マスター（effect_types）のデータをもってくる
+// for　配列の各要素を格納する新しい変数　of 配列
+// 配列から一個ずつ持ってくるなくなるまでまわる（部品マスタのeffectTypeIdという一つのフィールドをもっている）
+// 錬金効果マスター（effect_types）のデータを１件ずつ持ってきてeffectTypeというEffectType形式のワークフィールド（レコード？）にいれる（for）
+// 錬金効果マスター（effect_types）のデータのレコード単位からIDを拾ったのと　パーツ（部品）マスタのeffectTypeIdというフィールドを入れたワークの比較
 getEffectTypesForPart(part: Part|null): EffectType[] {
   if (part === null){
     return [];
