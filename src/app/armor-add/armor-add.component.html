@@ -19,11 +19,19 @@
         </div>
     </fieldset>
 </section>
-<section id="parts-button" [class.selected]="selectedPartId!==''">
+<section id="parts-button" [class.selected]="selectedPart!==null">
     <fieldset class="container">
         <legend><h2>装備部位</h2></legend>
         <div class="buttons">
-            <button type="button" [class.hidden]="selectedSeries!=null && selectedSeries.noPartsList.includes(part.id)" [class.selected]='part.id===selectedPartId' (click)="selectPartId(part.id)"  *ngFor="let part of masterDataService.getParts()">{{part.name}}</button>
+            <button type="button" [class.hidden]="selectedSeries!==null && selectedSeries.noPartsList.includes(part.id)" [class.selected]='part.id===selectedPart?.id' (click)="selectPart(part)"  *ngFor="let part of masterDataService.getParts()">{{part.name}}</button>
+        </div>
+    </fieldset>
+</section>
+<section id="effect-button" [class.hidden]="selectedPartId===''" >
+    <fieldset class="container">
+        <legend><h2>錬金効果</h2></legend>
+        <div class="buttons">
+            <button type="button"  *ngFor="let effectType of masterDataService.getEffectTypesForPart(selectedPart)">{{effectType.name}}</button>
         </div>
     </fieldset>
 </section>

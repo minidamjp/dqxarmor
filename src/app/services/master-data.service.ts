@@ -1,7 +1,9 @@
 import { Injectable } from '@angular/core';
 
+import { EffectTypes } from '../data/effect_types';
 import { Parts } from '../data/parts';
 import { SeriesList } from '../data/series';
+import { EffectType } from '../models/effect_type';
 import { Part } from '../models/part';
 import { Series } from '../models/series';
 
@@ -16,7 +18,7 @@ export class MasterDataService {
   getLevels(): number[] {
     const levels: number[] = [];
     for (const series of SeriesList){
-      if(!levels.includes(series.level)){
+      if (!levels.includes(series.level)){
         levels.push(series.level);
       }
     }
@@ -35,6 +37,26 @@ export class MasterDataService {
   getParts(): Part[] {
    return Parts;
   }
+
+// パーツ（部位）が指定されたらその部位の部位マスターを持ってくる
+// 空っぽのEffectType形式のeffectTypesというフィールドを作る
+// パーツ（部位）マスターからもってきたeffectTypeIdに
+// 錬金効果マスター（effect_types）のデータをもってくる
+getEffectTypesForPart(part: Part|null): EffectType[] {
+  if (part === null){
+    return [];
+  }
+  const effectTypes: EffectType[] = [];
+  for (const effectTypeId of part.effectTypeId){
+    for (const effectType of EffectTypes){
+      if (effectType.id === effectTypeId){
+       effectTypes.push(effectType);
+      }
+    }
+  }
+  return effectTypes;
+}
+
 
 }
 

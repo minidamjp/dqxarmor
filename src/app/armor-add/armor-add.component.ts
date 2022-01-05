@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 import { SeriesList } from '../data/series';
+import { Part } from '../models/part';
 import { Series } from '../models/series';
 import { MasterDataService } from '../services/master-data.service';
 
@@ -15,6 +16,7 @@ export class ArmorAddComponent implements OnInit {
   selectedLevel = 0;
   selectedSeries: Series|null = null;
   selectedPartId = '';
+  selectedPart: Part|null = null;
 
 
   constructor(
@@ -48,7 +50,7 @@ export class ArmorAddComponent implements OnInit {
     }
   }
 
-// htmlの*ngforでもらってきたシリーズマスターのIDを変数で受け取ってここのワークフィールドとして
+// htmlの*ngforでもらってきたシリーズマスターのデータを変数で受け取ってここのワークフィールドとして
 // 宣言したselectedIdと比較する
 // もし同じならば２連続同じ装備を選択しているので選択解除としワークフィールドを空にする
 // 異なるならば１度目の押下なので選択として該当の装備のみ表示し、他の装備は非表示にする
@@ -63,11 +65,11 @@ export class ArmorAddComponent implements OnInit {
     }
   }
 
-  selectPartId(partId: string): void {
-    if (this.selectedPartId === partId){
-      this.selectedPartId = '';
+  selectPart(part: Part): void {
+    if (this.selectedPart?.id === part.id){
+      this.selectedPart = null;
     }else{
-      this.selectedPartId = partId;
+      this.selectedPart = part;
     }
   }
 
