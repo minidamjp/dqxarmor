@@ -29,9 +29,25 @@
 </section>
 <section id="effect-button"  *ngIf="selectedPart?.id!==null">
     <fieldset class="container">
-        <legend><h2>錬金効果</h2></legend>
+        <legend><h2>錬金効果名</h2></legend>
         <div class="buttons">
             <button type="button" [class.selected]="effectType.id===selectedEffectType?.id" (click)="selectEffectType(effectType)"  *ngFor="let effectType of masterDataService.getEffectTypesForPart(selectedPart)">{{effectType.name}}</button>
+        </div>
+    </fieldset>
+</section>
+<section id="enchantBase-button"  *ngIf="selectedEffectType!==null">
+    <fieldset class="container">
+        <legend><h2>数値</h2></legend>
+        <div class="buttons">
+            <button type="button" [class.selected]="enchant.base===selectedEnchant?.base" (click)="selectEnchantBase(enchant)"  *ngFor="let enchant of selectedEffectType.enchantList">{{enchant.base}}{{selectedEffectType.unit}}</button>
+        </div>
+    </fieldset>
+</section>
+<section id="enchantExtra-button"  *ngIf="selectedEnchant!==null && selectedEffectType!==null">
+    <fieldset class="container">
+        <legend><h2>補助数値</h2></legend>
+        <div class="buttons">
+            <button type="button" [class.selected]="extra===selectedExtra" (click)="selectEnchantExtra(extra)"  *ngFor="let extra of selectedEnchant.extra">{{extra}}{{selectedEffectType.unit}}</button>
         </div>
     </fieldset>
 </section>

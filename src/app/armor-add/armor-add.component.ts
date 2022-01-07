@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 import { EffectType } from '../models/effect_type';
+import { Enchant } from '../models/enchant';
 import { Part } from '../models/part';
 import { Series } from '../models/series';
 import { MasterDataService } from '../services/master-data.service';
@@ -17,7 +18,8 @@ export class ArmorAddComponent implements OnInit {
   selectedSeries: Series|null = null;
   selectedPart: Part|null = null;
   selectedEffectType: EffectType|null = null;
-
+  selectedEnchant: Enchant|null = null;
+  selectedExtra = 0;
 
   constructor(
     public masterDataService: MasterDataService,
@@ -81,4 +83,19 @@ export class ArmorAddComponent implements OnInit {
     }
   }
 
+  selectEnchantBase(enchant: Enchant): void {
+    if (this.selectedEnchant?.base === enchant.base){
+      this.selectedEnchant = null;
+    }else{
+      this.selectedEnchant = enchant;
+    }
+  }
+
+  selectEnchantExtra(extra: number): void {
+    if (this.selectedExtra === extra){
+      this.selectedExtra = 0;
+    }else{
+      this.selectedExtra = extra;
+    }
+  }
 }

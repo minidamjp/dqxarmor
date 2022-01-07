@@ -106,6 +106,28 @@ legend{
 	}
 }
 
+#enchantBase-button button {
+	margin: 0.5em;
+	background-color: rgb(122, 122, 122);
+	color: #fff;
+	width: 6em;
+	padding: 0.5em;
+	&.selected {
+		background-color: #f5ae51;
+	}
+}
+
+#enchantExtra-button button {
+	margin: 0.5em;
+	background-color: rgb(122, 122, 122);
+	color: #fff;
+	width: 6em;
+	padding: 0.5em;
+	&.selected {
+		background-color: #f5ae51;
+	}
+}
+
 #completed button {
 	color: inherit;
 	text-shadow: inherit;
