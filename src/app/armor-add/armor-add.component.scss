@@ -128,6 +128,30 @@ legend{
 	}
 }
 
+.slot-container {
+	position: relative;
+	margin-top: 1.5em;
+	padding: 0;
+}
+
+.slots{
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+	padding: 0.5em;
+}
+
+.slots button{
+	color: #000;
+	border-radius: 1em;
+	background-color: rgb(255, 251, 188);
+	padding: 0.5em;
+	min-width: 5em;
+	min-height: 2.5em;
+
+}
+
+
 #completed button {
 	color: inherit;
 	text-shadow: inherit;

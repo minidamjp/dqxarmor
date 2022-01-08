@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
+import { Effect } from '../models/effect';
 import { EffectType } from '../models/effect_type';
 import { Enchant } from '../models/enchant';
 import { Part } from '../models/part';
@@ -17,9 +18,28 @@ export class ArmorAddComponent implements OnInit {
   selectedLevel = 0;
   selectedSeries: Series|null = null;
   selectedPart: Part|null = null;
-  selectedEffectType: EffectType|null = null;
-  selectedEnchant: Enchant|null = null;
-  selectedExtra = 0;
+  slots: Effect[] = [
+    {
+      effectTypeId: null,
+      enchantBase: null,
+      enchantExtra: null,
+    },
+    {
+      effectTypeId: null,
+      enchantBase: null,
+      enchantExtra: null,
+    },
+    {
+      effectTypeId: null,
+      enchantBase: null,
+      enchantExtra: null,
+    },
+  ];
+  currentSlot = 0;
+
+  get slot(): Effect {
+    return this.slots[this.currentSlot];
+  }
 
   constructor(
     public masterDataService: MasterDataService,
@@ -76,26 +96,31 @@ export class ArmorAddComponent implements OnInit {
   }
 
   selectEffectType(effectType: EffectType): void {
-    if (this.selectedEffectType?.id === effectType.id){
-      this.selectedEffectType = null;
+    if (this.slots[this.currentSlot].effectTypeId === effectType.id){
+      this.slots[this.currentSlot].effectTypeId = null;
     }else{
-      this.selectedEffectType = effectType;
+      this.slots[this.currentSlot].effectTypeId = effectType.id;
     }
   }
 
   selectEnchantBase(enchant: Enchant): void {
-    if (this.selectedEnchant?.base === enchant.base){
-      this.selectedEnchant = null;
+    if (this.slots[this.currentSlot].enchantBase === enchant.base){
+      this.slots[this.currentSlot].enchantBase = null;
     }else{
-      this.selectedEnchant = enchant;
+      this.slots[this.currentSlot].enchantBase = enchant.base;
     }
   }
 
   selectEnchantExtra(extra: number): void {
-    if (this.selectedExtra === extra){
-      this.selectedExtra = 0;
+    if (this.slots[this.currentSlot].enchantExtra === extra){
+      this.slots[this.currentSlot].enchantExtra = null;
     }else{
-      this.selectedExtra = extra;
+      this.slots[this.currentSlot].enchantExtra = extra;
     }
   }
+
+  setCurrentSlot(idx: number): void{
+    this.currentSlot = idx;
+  }
+
 }
