@@ -49,7 +49,25 @@ export class ArmorAddComponent implements OnInit {
   }
 
   isCompleted(): boolean {
-    return false;
+    if (this.selectedSeries === null){
+      return false;
+    }
+    if (this.selectedPart === null){
+      return false;
+    }
+    let count = 0;
+    for (const effect of this.slots){
+      if (effect.effectTypeId === null){
+        count++;
+      }
+      if (count === 3){
+        return false;
+      }
+      if (effect.effectTypeId !== null && effect.enchantBase === null){
+        return false;
+      }
+    }
+    return true;
   }
 
 
@@ -92,6 +110,12 @@ export class ArmorAddComponent implements OnInit {
       this.selectedPart = null;
     }else{
       this.selectedPart = part;
+      for (const effect of this.slots){
+        effect.effectTypeId = null;
+        effect.enchantBase = null;
+        effect.enchantExtra = null;
+      }
+      this.currentSlot = 0;
     }
   }
 
@@ -100,6 +124,8 @@ export class ArmorAddComponent implements OnInit {
       this.slots[this.currentSlot].effectTypeId = null;
     }else{
       this.slots[this.currentSlot].effectTypeId = effectType.id;
+      this.slots[this.currentSlot].enchantBase = null;
+      this.slots[this.currentSlot].enchantExtra = null;
     }
   }
 
@@ -108,6 +134,8 @@ export class ArmorAddComponent implements OnInit {
       this.slots[this.currentSlot].enchantBase = null;
     }else{
       this.slots[this.currentSlot].enchantBase = enchant.base;
+      this.slots[this.currentSlot].enchantExtra = null;
+
     }
   }
 
