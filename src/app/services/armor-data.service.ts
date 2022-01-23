@@ -11,7 +11,7 @@ export class ArmorDataService {
 
   constructor() {
     const j: string|null = localStorage.getItem('Armor');
-    if(j !== null){
+    if (j !== null){
       this.armorList = JSON.parse(j);
     }
   }
