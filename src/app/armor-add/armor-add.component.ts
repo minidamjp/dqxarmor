@@ -1,10 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 
+import { Armor } from '../models/armor';
 import { Effect } from '../models/effect';
 import { EffectType } from '../models/effect_type';
 import { Enchant } from '../models/enchant';
 import { Part } from '../models/part';
 import { Series } from '../models/series';
+import { ArmorDataService } from '../services/armor-data.service';
 import { MasterDataService } from '../services/master-data.service';
 
 @Component({
@@ -43,6 +45,7 @@ export class ArmorAddComponent implements OnInit {
 
   constructor(
     public masterDataService: MasterDataService,
+    public armorDataService: ArmorDataService,
   ) { }
 
   ngOnInit(): void {
@@ -72,9 +75,14 @@ export class ArmorAddComponent implements OnInit {
 
 
   onClickComplete(): void {
-    if (this.keyTime == null) {
-      const keyTime =  new Date().getTime().toString();
-    }
+    const keyTime =  new Date().getTime().toString();
+    const armorTypeId = this.selectedLevel + '-' + this.selectedPart?.id + '-' + this.selectedSeries?.id;
+    const armor: Armor = {
+      id: keyTime,
+      armorTypeId,
+      effectList: this.slots
+    };
+    this.armorDataService.addArmor(armor);
   }
 // 画面で押下されたレベルを受け取ってワークフィールドとして宣言したselectedLevelと比較する
 // もし同じなら２度連続で同じレベルを押下したことになるので選択解除としてワークフィールドを空にする
