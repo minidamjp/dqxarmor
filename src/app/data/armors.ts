@@ -204,7 +204,7 @@ export const ArmorTypes: ArmorType[] = [
     {partId: '0', seriesId: '037', id: '110-0-037', name: 'ファフニルヘルム'},
     {partId: '0', seriesId: '038', id: '110-0-038', name: 'ワンダラーズベレー'},
     {partId: '0', seriesId: '039', id: '110-0-039', name: 'グレイスフルハット'},
-    {partId: '0', seriesId: '040', id: '110-0-030', name: '妖炎魔女の髪飾り'},
+    {partId: '0', seriesId: '040', id: '110-0-040', name: '妖炎魔女の髪飾り'},
 
     {partId: '1', seriesId: '036', id: '110-1-036', name: '魔候爵のよろい'},
     {partId: '1', seriesId: '037', id: '110-1-037', name: 'ファフニルメイル上'},

@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 
+import { Armor } from '../models/armor';
+import { ArmorDataService } from '../services/armor-data.service';
+import { MasterDataService } from '../services/master-data.service';
+
 @Component({
   selector: 'app-armor-list',
   templateUrl: './armor-list.component.html',
@@ -7,9 +11,20 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ArmorListComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    public masterDataService: MasterDataService,
+    public armorDataService: ArmorDataService,
+  ) { }
 
   ngOnInit(): void {
+  }
+
+  getArmorList(): Armor[] {
+    return this.armorDataService.getArmorList();
+  }
+
+  getArmorCount(): number {
+    return this.getArmorList().length;
   }
 
 }

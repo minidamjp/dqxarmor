@@ -25,5 +25,7 @@ export class ArmorDataService {
     localStorage.setItem('Armor', JSON.stringify(this.armorList));
   }
 
-
+  getArmorList(): Armor[] {
+    return this.armorList;
+  }
 }

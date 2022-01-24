@@ -1,5 +1,22 @@
 <div id="add">
     <a routerLink="/new"><i class="far fa-plus-square"></i>新規追加</a>
 </div>
-<h1>装備一覧</h1>
+<h1>装備一覧({{getArmorCount()}})</h1>
 <button type="button"><i class="fas fa-search-plus"></i>条件：</button>
+
+<ng-container *ngFor="let armor of getArmorList();">
+    <section id="armors">
+        <fieldset class="container">
+            <legend>
+                <h2>{{masterDataService.getArmorType(armor.armorTypeId).name}}</h2>
+                <div class="armor-ops">
+                    <button type="button"><i class="fas fa-pencil-alt"></i></button>
+                    <button type="button"><i class="fas fa-trash-alt"></i></button>
+                </div>
+            </legend>
+            <div class="slot-container" *ngFor="let effect of armor.effectList">
+                <div class="slots">{{masterDataService.getDisplayName(effect)}}</div>
+            </div>
+        </fieldset>
+    </section>
+</ng-container>

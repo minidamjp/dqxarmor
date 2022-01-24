@@ -1,8 +1,11 @@
+import { identifierModuleUrl } from '@angular/compiler';
 import { Injectable } from '@angular/core';
 
+import { ArmorTypes } from '../data/armors';
 import { EffectTypes } from '../data/effect_types';
 import { Parts } from '../data/parts';
 import { SeriesList } from '../data/series';
+import { ArmorType } from '../models/armor_type';
 import { Effect } from '../models/effect';
 import { EffectType } from '../models/effect_type';
 import { Enchant } from '../models/enchant';
@@ -110,6 +113,20 @@ export class MasterDataService {
       displayName = displayName.replace('%enchantExtra%', '');
     }
     return displayName;
+  }
+
+  getArmorType(id: string): ArmorType{
+    for (const armorType of ArmorTypes){
+      if (id === armorType.id){
+        return armorType;
+      }
+    }
+    return {
+      partId: '',
+      seriesId: '',
+      id: '',
+      name: ''
+    };
   }
 }
 
