@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 import { Armor } from '../models/armor';
 import { Effect } from '../models/effect';
@@ -46,6 +47,7 @@ export class ArmorAddComponent implements OnInit {
   constructor(
     public masterDataService: MasterDataService,
     public armorDataService: ArmorDataService,
+    private router: Router,
   ) { }
 
   ngOnInit(): void {
@@ -83,6 +85,7 @@ export class ArmorAddComponent implements OnInit {
       effectList: this.slots
     };
     this.armorDataService.addArmor(armor);
+    this.router.navigate(['/']);
   }
 // 画面で押下されたレベルを受け取ってワークフィールドとして宣言したselectedLevelと比較する
 // もし同じなら２度連続で同じレベルを押下したことになるので選択解除としてワークフィールドを空にする
@@ -127,14 +130,41 @@ export class ArmorAddComponent implements OnInit {
     }
   }
 
+// 錬金効果を入れて同じ効果を押した場合の挙動
+// 錬金効果が入っているが効果数値は入っていない → 選択されていた効果をキャンセル（数値、補助数値はクリア
+// 錬金効果が入っていて効果数値も入っている → 次の錬金効果を入れたいとみなし次の行に設定する（次の行の数値、補助数値はクリア
+//                                         ３行目の場合には選択されていた効果をキャンセル（効果、数値、補助数値はクリア
+// 錬金効果をいれて別の効果を押した場合の挙動(currentSlotにまだデータが入ってなかったときも含む)
+// 錬金効果が入っているが効果数値は入っていない → 別の効果に上書き（数値、補助数値はクリア
+// 錬金効果が入っていて効果数値も入っている → 次の錬金効果を入れたいとみなし次の行に設定する（次の行の数値、補助数値はクリア
+//                                         ３行目の場合には選択されていた効果をキャンセル（効果、数値、補助数値はクリア
+
   selectEffectType(effectType: EffectType): void {
     if (this.slots[this.currentSlot].effectTypeId === effectType.id){
-      this.slots[this.currentSlot].effectTypeId = null;
+      if (this.slots[this.currentSlot].enchantBase === null){
+        this.slots[this.currentSlot].effectTypeId = null;
+      }else{
+        if (this.currentSlot !== 3){
+          this.currentSlot++;
+          this.slots[this.currentSlot].effectTypeId = effectType.id;
+        }else{
+          this.slots[this.currentSlot].effectTypeId = null;
+        }
+      }
     }else{
-      this.slots[this.currentSlot].effectTypeId = effectType.id;
-      this.slots[this.currentSlot].enchantBase = null;
-      this.slots[this.currentSlot].enchantExtra = null;
+      if (this.slots[this.currentSlot].enchantBase === null){
+        this.slots[this.currentSlot].effectTypeId = effectType.id;
+      }else{
+        if (this.currentSlot !== 3){
+          this.currentSlot++;
+          this.slots[this.currentSlot].effectTypeId = effectType.id;
+        }else{
+          this.slots[this.currentSlot].effectTypeId = null;
+        }
+      }
     }
+    this.slots[this.currentSlot].enchantBase = null;
+    this.slots[this.currentSlot].enchantExtra = null;
   }
 
   selectEnchantBase(enchant: Enchant): void {

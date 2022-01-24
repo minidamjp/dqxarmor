@@ -27,4 +27,8 @@ export class ArmorListComponent implements OnInit {
     return this.getArmorList().length;
   }
 
+  onClickDelete(keyTime: string): void {
+    this.armorDataService.deleteArmor(keyTime);
+  }
+
 }

@@ -11,7 +11,7 @@
                 <h2>{{masterDataService.getArmorType(armor.armorTypeId).name}}</h2>
                 <div class="armor-ops">
                     <button type="button"><i class="fas fa-pencil-alt"></i></button>
-                    <button type="button"><i class="fas fa-trash-alt"></i></button>
+                    <button type="button" (click)="onClickDelete(armor.id);"><i class="fas fa-trash-alt"></i></button>
                 </div>
             </legend>
             <div class="slot-container" *ngFor="let effect of armor.effectList">
