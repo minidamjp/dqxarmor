@@ -35,11 +35,11 @@ legend{
 	display: block;
 	margin: 0;
 	padding: 0;
-	margin-left: 1em;
+	margin-left: 0.75em;
 	margin-bottom: 0;
-	padding-left: 0.5em;
-	padding-right: 0.5em;
-	h2{
+	padding-left: 0.25em;
+	padding-right: 0.25em;
+	h3{
 		display: inline-block;
 		margin: 0;
 		margin-left: 0.25rem;
@@ -50,7 +50,7 @@ legend{
 			color: inherit;
 			background-color: #000;	
 			margin-right: 0.25rem;
-			margin-left: 1rem;
+			margin-left: 0.5rem;
 		}
 	}
 }
