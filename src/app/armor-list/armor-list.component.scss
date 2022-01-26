@@ -60,3 +60,21 @@ legend{
 	background-color: #000;
 	margin-left: 1rem;
 }
+
+button.active i.unchecked {
+	display: none;
+}
+
+button:not(.active) i.checked {
+	display: none;
+}
+.condJob{
+	display: flex;
+	align-content: flex-start;
+	flex-wrap: wrap;
+	align-items: center;
+	padding: 0.5em;
+	i {
+		margin-right: 0.25em;
+	}
+}

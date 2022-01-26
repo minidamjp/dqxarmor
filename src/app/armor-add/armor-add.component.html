@@ -30,6 +30,9 @@
         <div class="slots" (click)="setCurrentSlot(slotIdx)">
             <button type="button">{{masterDataService.getDisplayName(effect)}}</button>
             <i class="fas fa-check" [class.hidden]="effect.effectTypeId === null || effect.enchantBase === null"></i>
+            <div class="trash" [class.hidden]="effect.effectTypeId === null || effect.enchantBase === null">
+                <button type="button" (click)="onClickEffectDelete(slotIdx);" ><i class="fas fa-trash-alt"></i></button>
+            </div>
         </div>
     </div>
 </section>

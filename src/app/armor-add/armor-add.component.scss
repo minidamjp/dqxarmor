@@ -158,6 +158,18 @@ legend{
 			display: none;
 		}
 	}
+	.trash {
+		&.hidden {
+			display: none;
+		}
+		button {
+		color: inherit;
+		background-color: #000;	
+		}
+		i {
+			color: #FFF;
+		}
+	}
 }
 
 

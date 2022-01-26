@@ -113,12 +113,39 @@ export class ArmorAddComponent implements OnInit {
     }else{
       this.selectedSeries = series;
       this.selectedLevel = series.level;
+      if (this.selectedPart !== null){
+        const noParts = this.selectedSeries.noPartsList.includes(this.selectedPart.id);
+        if (noParts){
+          this.selectedPart = null;
+          for (const effect of this.slots){
+            effect.effectTypeId = null;
+            effect.enchantBase = null;
+            effect.enchantExtra = null;
+          }
+          this.currentSlot = 0;
+        }
+      }
     }
   }
 
+// 部位が選択済みのものを再度押されたときに装備が選択されてなかったら
+// 画面綺麗にしたいのかなって思うだから部位と錬金効果全部消すよ
+// 部位が選択済みのものを再度押されて装備が選択されていたら
+// 気の迷いって思う
+// 部位が選択済みのものとちがうものを押されたら
+// 例）うで → 足ならば部位変えたいんだよねってことで部位の選択を変更して
+// 入れてあったかもしれない錬金効果を全部消すよ
   selectPart(part: Part): void {
     if (this.selectedPart?.id === part.id){
-      this.selectedPart = null;
+      if (this.selectedSeries === null){
+        this.selectedPart = null;
+        for (const effect of this.slots){
+          effect.effectTypeId = null;
+          effect.enchantBase = null;
+          effect.enchantExtra = null;
+        }
+        this.currentSlot = 0;
+      }
     }else{
       this.selectedPart = part;
       for (const effect of this.slots){
@@ -189,4 +216,9 @@ export class ArmorAddComponent implements OnInit {
     this.currentSlot = idx;
   }
 
+  onClickEffectDelete(idx: number): void{
+    this.slots[idx].effectTypeId = null;
+    this.slots[idx].enchantBase = null;
+    this.slots[idx].enchantExtra = null;
+  }
 }

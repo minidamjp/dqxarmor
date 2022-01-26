@@ -1,3 +1,4 @@
+// tslint:disable: max-line-length
 import { Series } from '../models/series';
 
 export const SeriesList: Series[] = [

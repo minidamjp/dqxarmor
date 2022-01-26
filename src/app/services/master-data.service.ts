@@ -3,12 +3,14 @@ import { Injectable } from '@angular/core';
 
 import { ArmorTypes } from '../data/armors';
 import { EffectTypes } from '../data/effect_types';
+import { Jobs } from '../data/jobs';
 import { Parts } from '../data/parts';
 import { SeriesList } from '../data/series';
 import { ArmorType } from '../models/armor_type';
 import { Effect } from '../models/effect';
 import { EffectType } from '../models/effect_type';
 import { Enchant } from '../models/enchant';
+import { Job } from '../models/job';
 import { Part } from '../models/part';
 import { Series } from '../models/series';
 
@@ -128,5 +130,11 @@ export class MasterDataService {
       name: ''
     };
   }
+
+  // 職業マスターデータを全部返す
+  getJobs(): Job[] {
+    return Jobs;
+    }
+
 }
 

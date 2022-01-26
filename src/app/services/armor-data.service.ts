@@ -17,6 +17,7 @@ export class ArmorDataService {
   }
 
   addArmor(armor: Armor): void{
+    this.copySlots(armor),
     this.armorList.unshift(armor);
     this.saveArmor();
   }
@@ -38,5 +39,14 @@ export class ArmorDataService {
       }
     }
   }
+
+  private copySlots(armor: Armor): Armor[] {
+    // 元のデータが変更された時に影響が出ないよう、
+    // データのコピーを作成する。
+    const clonedSlots: Armor[] = [];
+    clonedSlots.push(armor);
+    return clonedSlots;
+  }
+
 
 }

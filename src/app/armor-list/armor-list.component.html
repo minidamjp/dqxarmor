@@ -3,7 +3,11 @@
 </div>
 <h1>装備一覧({{getArmorCount()}})</h1>
 <button type="button"><i class="fas fa-search-plus"></i>条件：</button>
-
+<div id="armor-search-condition">
+    <div class="condJob">
+        <button type="button" [class.active]="isCondActive('job', job.id)" (click)="onClickSearch('job', job.id);" *ngFor="let job of masterDataService.getJobs()"><i class="checked far fa-check-square"></i><i class="unchecked far fa-square"></i>{{job.abbr}}</button>
+    </div>
+</div>
 <ng-container *ngFor="let armor of getArmorList();">
     <section id="armors">
         <fieldset class="container">
