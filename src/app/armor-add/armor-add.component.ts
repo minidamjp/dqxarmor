@@ -78,7 +78,7 @@ export class ArmorAddComponent implements OnInit {
 
   onClickComplete(): void {
     const keyTime =  new Date().getTime().toString();
-    const armorTypeId = this.selectedLevel + '-' + this.selectedPart?.id + '-' + this.selectedSeries?.id;
+    const armorTypeId = ('000' + this.selectedLevel).slice(-3) + '-' + this.selectedPart?.id + '-' + this.selectedSeries?.id;
     const armor: Armor = {
       id: keyTime,
       armorTypeId,

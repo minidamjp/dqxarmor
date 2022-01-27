@@ -4,19 +4,6 @@ import { Armor } from '../models/armor';
 import { ArmorDataService } from '../services/armor-data.service';
 import { MasterDataService } from '../services/master-data.service';
 
-interface SearchCondition {
-  cond: string;
-  label: string;
-}
-class Matcher {
-  private cond1: string;
-  private cond2: string;
-  constructor(conds: { [name: string]: SearchCondition}) {
-    this.cond1 = conds.job?.cond;
-    this.cond2 = conds.effect?.cond;
-  }
-}
-
 @Component({
   selector: 'app-armor-list',
   templateUrl: './armor-list.component.html',
@@ -29,7 +16,9 @@ export class ArmorListComponent implements OnInit {
     public armorDataService: ArmorDataService,
   ) { }
 
-  conds: { [name: string]: SearchCondition} = {};
+  showConds = false;
+  serchJob: string[] = [];
+  serchEffect: string[] = [];
 
   ngOnInit(): void {
   }
@@ -46,12 +35,38 @@ export class ArmorListComponent implements OnInit {
     this.armorDataService.deleteArmor(keyTime);
   }
 
-  onClickSearch(series: string, label: string): void{
-    return;
+  toggleConds(): void {
+    this.showConds = !this.showConds;
   }
 
-  isCondActive(series: string, label: string): boolean {
-    return (this.conds[series] != null && this.conds[series].label === label);
+  onClickJobSearch(id: string): void{
+    for (const [idx, jobId] of this.serchJob.entries()){
+      if (jobId === id){
+        this.serchJob.splice(idx, 1);
+        return;
+      }
+    }
+    this.serchJob.push(id);
+    this.serchJob.sort();
+  }
+
+  isJobActive(id: string): boolean {
+    return (this.serchJob.includes(id));
+  }
+
+  onClickEffectSearch(id: string): void{
+    for (const [idx, effectId] of this.serchEffect.entries()){
+      if (effectId === id){
+        this.serchEffect.splice(idx, 1);
+        return;
+      }
+    }
+    this.serchEffect.push(id);
+    this.serchEffect.sort();
+  }
+
+  isEffectActive(id: string): boolean {
+    return (this.serchEffect.includes(id));
   }
 
 }

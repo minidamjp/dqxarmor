@@ -107,11 +107,11 @@ export const ArmorTypes: ArmorType[] = [
     {partId: '3', seriesId: '018', id: '099-3-018', name: '機工博士のグローブ'},
     {partId: '3', seriesId: '020', id: '099-3-020', name: 'カテドラルグローブ'},
 
-    {partId: '4', seriesId: '016', id: '099-4-016', name: '降魔のグリーブ'},
-    {partId: '4', seriesId: '017', id: '099-4-017', name: '武神の脚帯'},
-    {partId: '4', seriesId: '018', id: '099-4-018', name: 'ヴァンガードブーツ'},
-    {partId: '4', seriesId: '019', id: '099-4-019', name: 'スターダムシューズ'},
-    {partId: '4', seriesId: '020', id: '099-4-020', name: '賢哲のくつ'},
+    {partId: '4', seriesId: '016', id: '099-4-016', name: 'シュバリエグリーブ'},
+    {partId: '4', seriesId: '017', id: '099-4-017', name: '族長のブーツ'},
+    {partId: '4', seriesId: '018', id: '099-4-018', name: '機工博士のくつ'},
+    {partId: '4', seriesId: '019', id: '099-4-019', name: 'ポールスターのくつ'},
+    {partId: '4', seriesId: '020', id: '099-4-020', name: 'カテドラルシューズ'},
 
     {partId: '0', seriesId: '021', id: '100-0-021', name: 'ヴァルハラヘルム'},
     {partId: '0', seriesId: '022', id: '100-0-022', name: 'レギオンヘルム'},

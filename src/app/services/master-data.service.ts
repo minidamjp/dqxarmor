@@ -136,5 +136,9 @@ export class MasterDataService {
     return Jobs;
     }
 
+    getAllEffectType(): EffectType[] {
+      return EffectTypes;
+     }
+
 }
 

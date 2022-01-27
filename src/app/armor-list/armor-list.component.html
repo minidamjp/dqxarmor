@@ -2,25 +2,26 @@
     <a routerLink="/new"><i class="far fa-plus-square"></i>新規追加</a>
 </div>
 <h1>装備一覧({{getArmorCount()}})</h1>
-<button type="button"><i class="fas fa-search-plus"></i>条件：</button>
-<div id="armor-search-condition">
+<button type="button" (click)="toggleConds()"><i class="fas fa-search-plus"></i>条件：</button>
+<div id="armor-search-condition" [class.hidden]="!showConds">
     <div class="condJob">
-        <button type="button" [class.active]="isCondActive('job', job.id)" (click)="onClickSearch('job', job.id);" *ngFor="let job of masterDataService.getJobs()"><i class="checked far fa-check-square"></i><i class="unchecked far fa-square"></i>{{job.abbr}}</button>
+        <button type="button" [class.active]="isJobActive(job.id)" (click)="onClickJobSearch(job.id);" *ngFor="let job of masterDataService.getJobs()"><i class="checked far fa-check-square"></i><i class="unchecked far fa-square"></i>{{job.abbr}}</button>
+    </div>
+    <div class="condEffect">
+        <button type="button" [class.active]="isEffectActive(effectType.id)" (click)="onClickEffectSearch(effectType.id);" *ngFor="let effectType of masterDataService.getAllEffectType()"><i class="checked far fa-check-square"></i><i class="unchecked far fa-square"></i>{{effectType.name}}</button>
     </div>
 </div>
 <ng-container *ngFor="let armor of getArmorList();">
-    <section id="armors">
-        <fieldset class="container">
-            <legend>
-                <h3>{{masterDataService.getArmorType(armor.armorTypeId).name}}</h3>
-                <div class="armor-ops">
-                    <button type="button"><i class="fas fa-pencil-alt"></i></button>
-                    <button type="button" (click)="onClickDelete(armor.id);"><i class="fas fa-trash-alt"></i></button>
-                </div>
-            </legend>
-            <div class="slot-container" *ngFor="let effect of armor.effectList">
-                <div class="slots">{{masterDataService.getDisplayName(effect)}}</div>
+    <fieldset class="container">
+        <legend>
+            <h3>{{masterDataService.getArmorType(armor.armorTypeId).name}}</h3>
+            <div class="armor-ops">
+                <button type="button"><i class="fas fa-pencil-alt"></i></button>
+                <button type="button" (click)="onClickDelete(armor.id);"><i class="fas fa-trash-alt"></i></button>
             </div>
-        </fieldset>
-    </section>
+        </legend>
+        <div class="slot-container" *ngFor="let effect of armor.effectList">
+            <div class="slots">{{masterDataService.getDisplayName(effect)}}</div>
+        </div>
+    </fieldset>
 </ng-container>
