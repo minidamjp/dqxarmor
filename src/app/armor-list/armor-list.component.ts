@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 
 import { Armor } from '../models/armor';
 import { ArmorDataService } from '../services/armor-data.service';
@@ -14,6 +15,8 @@ export class ArmorListComponent implements OnInit {
   constructor(
     public masterDataService: MasterDataService,
     public armorDataService: ArmorDataService,
+    private router: Router,
+    private activatedRoute: ActivatedRoute,
   ) { }
 
   showConds = false;
@@ -29,6 +32,10 @@ export class ArmorListComponent implements OnInit {
 
   getArmorCount(): number {
     return this.getArmorList().length;
+  }
+
+  onClickUpdate(keyTime: string): void {
+    this.router.navigate(['a', keyTime]);
   }
 
   onClickDelete(keyTime: string): void {

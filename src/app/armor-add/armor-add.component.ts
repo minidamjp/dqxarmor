@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 import { Armor } from '../models/armor';
 import { Effect } from '../models/effect';
@@ -17,7 +17,7 @@ import { MasterDataService } from '../services/master-data.service';
 })
 export class ArmorAddComponent implements OnInit {
 
-  keyTime: string|null = null;
+  keyTime = '';
   selectedLevel = 0;
   selectedSeries: Series|null = null;
   selectedPart: Part|null = null;
@@ -48,9 +48,23 @@ export class ArmorAddComponent implements OnInit {
     public masterDataService: MasterDataService,
     public armorDataService: ArmorDataService,
     private router: Router,
+    private activatedRoute: ActivatedRoute,
   ) { }
 
   ngOnInit(): void {
+    const id: string|null = this.activatedRoute.snapshot.params.id;
+    if (id != null) {
+      this.keyTime = id;
+      const armor = this.armorDataService.getCopyOfArmor(this.keyTime);
+      if (armor != null) {
+        this.selectedLevel = parseInt(armor.armorTypeId.substring(0, 3), 10);
+        this.selectedPart = this.masterDataService.getPartById(armor.armorTypeId.substring(4, 5));
+        this.selectedSeries = this.masterDataService.getSeriesById(armor.armorTypeId.substring(6, 9));
+        this.slots = armor.effectList;
+      } else {
+        this.router.navigate(['/']);
+      }
+    }
   }
 
   isCompleted(): boolean {
@@ -77,10 +91,10 @@ export class ArmorAddComponent implements OnInit {
 
 
   onClickComplete(): void {
-    const keyTime =  new Date().getTime().toString();
+    const id = this.keyTime;
     const armorTypeId = ('000' + this.selectedLevel).slice(-3) + '-' + this.selectedPart?.id + '-' + this.selectedSeries?.id;
     const armor: Armor = {
-      id: keyTime,
+      id,
       armorTypeId,
       effectList: this.slots
     };

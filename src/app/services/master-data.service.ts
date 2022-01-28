@@ -45,6 +45,35 @@ export class MasterDataService {
    return Parts;
   }
 
+  getPartById(id: string): Part{
+    for (const part of Parts){
+      if (id === part.id){
+        return part;
+      }
+    }
+    return {
+      id: '',
+      name: '',
+      effectTypeId: [],
+    };
+  }
+
+  getSeriesById(id: string): Series{
+    for (const series of SeriesList){
+      if (id === series.id){
+        return series;
+      }
+    }
+    return {
+      id: '',
+      level: 0,
+      name: '',
+      noPartsList: [],
+      job: [],
+      exEffect: '',
+    };
+  }
+
   // パーツ（部位）が指定されたらその部位の部位マスターを持ってくる
   // 空っぽのEffectType形式のeffectTypesというフィールドを作る
   // パーツ（部位）マスターからもってきたeffectTypeIdに
@@ -136,9 +165,9 @@ export class MasterDataService {
     return Jobs;
     }
 
-    getAllEffectType(): EffectType[] {
-      return EffectTypes;
-     }
+  getAllEffectType(): EffectType[] {
+    return EffectTypes;
+    }
 
 }
 

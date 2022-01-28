@@ -1,5 +1,5 @@
 <div id="add">
-    <a routerLink="/new"><i class="far fa-plus-square"></i>新規追加</a>
+    <a routerLink="a/new"><i class="far fa-plus-square"></i>新規追加</a>
 </div>
 <h1>装備一覧({{getArmorCount()}})</h1>
 <button type="button" (click)="toggleConds()"><i class="fas fa-search-plus"></i>条件：</button>
@@ -16,7 +16,7 @@
         <legend>
             <h3>{{masterDataService.getArmorType(armor.armorTypeId).name}}</h3>
             <div class="armor-ops">
-                <button type="button"><i class="fas fa-pencil-alt"></i></button>
+                <button type="button" (click)="onClickUpdate(armor.id);"><i class="fas fa-pencil-alt"></i></button>
                 <button type="button" (click)="onClickDelete(armor.id);"><i class="fas fa-trash-alt"></i></button>
             </div>
         </legend>
