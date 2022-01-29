@@ -16,19 +16,26 @@ h2{
 	margin: 0;
 }
 
-legend{
+.title{
+	display: block;
+	position: absolute;
 	margin: 0;
 	padding: 0;
+	top: -1.25rem;
 	margin-left: 1em;
-	padding-left: 0.5em;
-	padding-right: 0.5em;
+	margin-bottom: 0;
+	padding-left: 0.75em;
+	padding-right: 0.75em;
+	background-color: #000;
 }
+
 .buttons{
 	display: flex;
 	align-content: flex-start;
 	flex-wrap: wrap;
 	align-items: center;
 	padding: 0.5em;
+	padding-top: 1rem;
 }
 
 #level-button.selected button{

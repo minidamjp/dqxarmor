@@ -37,14 +37,17 @@ button{
 	padding: 0;
 }
 
-legend{
+.title{
 	display: block;
+	position: absolute;
 	margin: 0;
 	padding: 0;
+	top: -1rem;
 	margin-left: 0.75em;
 	margin-bottom: 0;
 	padding-left: 0.25em;
 	padding-right: 0.25em;
+	background-color: #000;
 	h3{
 		display: inline-block;
 		margin: 0;
@@ -59,6 +62,10 @@ legend{
 			margin-left: 0.5rem;
 		}
 	}
+}
+
+.slot-container{
+	padding-top: 1rem;
 }
 
 .slots{
@@ -95,3 +102,4 @@ button:not(.active) i.checked {
 		margin-right: 0.25em;
 	}
 }
+

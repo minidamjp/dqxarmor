@@ -12,16 +12,20 @@
     </div>
 </div>
 <ng-container *ngFor="let armor of getArmorList();">
-    <fieldset class="container">
-        <legend>
+<!---->
+    <div class="container">
+        <span class="title">
             <h3>{{masterDataService.getArmorType(armor.armorTypeId).name}}</h3>
             <div class="armor-ops">
                 <button type="button" (click)="onClickUpdate(armor.id);"><i class="fas fa-pencil-alt"></i></button>
+
                 <button type="button" (click)="onClickDelete(armor.id);"><i class="fas fa-trash-alt"></i></button>
             </div>
-        </legend>
-        <div class="slot-container" *ngFor="let effect of armor.effectList">
-            <div class="slots">{{masterDataService.getDisplayName(effect)}}</div>
+        </span>
+        <div  class="slot-container">
+            <div *ngFor="let effect of armor.effectList">
+                <div class="slots">{{masterDataService.getDisplayName(effect)}}</div>
+            </div>
         </div>
-    </fieldset>
+    </div>
 </ng-container>

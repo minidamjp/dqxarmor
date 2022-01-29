@@ -2,28 +2,28 @@
     <a routerLink="/">登録済み一覧</a>
 </header>
 <section id="level-button" [class.selected]="selectedLevel!==0">
-    <fieldset class="container">
-        <legend><h2>レベル</h2></legend>
+    <div class="container">
+        <span class="title"><h2>レベル</h2></span>
         <div class="buttons">
             <button type="button" [class.selected]="level===selectedLevel" (click)="selectLevel(level)" *ngFor="let level of masterDataService.getLevels()">{{level}}</button>
         </div>
-    </fieldset>
+    </div>
 </section>
 <section id="series-button" [class.selected]="selectedSeries!==null" [class.level-matched]="selectedLevel!==0">
-    <fieldset class="container">
-        <legend><h2>装備名</h2></legend>
+    <div class="container">
+        <span class="title"><h2>装備名</h2></span>
         <div class="buttons">
             <button type="button"  [class.selected]="series.id===selectedSeries?.id" [class.level-matched]="series.level===selectedLevel" (click)="selectSeries(series)" *ngFor="let series of masterDataService.getSeriesList()">{{series.name}}</button>
         </div>
-    </fieldset>
+    </div>
 </section>
 <section id="parts-button" [class.selected]="selectedPart!==null">
-    <fieldset class="container">
-        <legend><h2>装備部位</h2></legend>
+    <div class="container">
+        <span class="title"><h2>装備部位</h2></span>
         <div class="buttons">
             <button type="button" [class.hidden]="selectedSeries!==null && selectedSeries.noPartsList.includes(part.id)" [class.selected]="part.id===selectedPart?.id" (click)="selectPart(part)"  *ngFor="let part of masterDataService.getParts()">{{part.name}}</button>
         </div>
-    </fieldset>
+    </div>
 </section>
 <section *ngIf="selectedPart!==null">
     <div class="slot-container" *ngFor="let effect of slots; index as slotIdx" [class.active]="currentSlot === slotIdx">
@@ -40,26 +40,26 @@
     <button type="button" class="completed" [disabled]="!isCompleted()" (click)="onClickComplete()"><i class="far fa-check-circle"></i>入力完了</button>
 </section>
 <section id="effect-button"  *ngIf="selectedPart?.id!==null">
-    <fieldset class="container">
-        <legend><h2>錬金効果名</h2></legend>
+    <div class="container">
+        <span class="title"><h2>錬金効果名</h2></span>
         <div class="buttons">
             <button type="button" [class.selected]="effectType.id===slot.effectTypeId" (click)="selectEffectType(effectType)"  *ngFor="let effectType of masterDataService.getEffectTypesForPart(selectedPart)">{{effectType.name}}</button>
         </div>
-    </fieldset>
+    </div>
 </section>
 <section id="enchantBase-button"  *ngIf="slot.effectTypeId!==null">
-    <fieldset class="container">
-        <legend><h2>数値</h2></legend>
+    <div class="container">
+        <span class="title"><h2>数値</h2></span>
         <div class="buttons">
             <button type="button" [class.selected]="enchant.base===slot.enchantBase" (click)="selectEnchantBase(enchant)"  *ngFor="let enchant of masterDataService.getEffectType(slot.effectTypeId).enchantList">{{enchant.base}}{{masterDataService.getEffectType(slot.effectTypeId).unit}}</button>
         </div>
-    </fieldset>
+    </div>
 </section>
 <section id="enchantExtra-button"  *ngIf="slot.enchantBase!==null && slot.effectTypeId!==null">
-    <fieldset class="container">
-        <legend><h2>補助数値</h2></legend>
+    <div class="container">
+        <span class="title"><h2>補助数値</h2></span>
         <div class="buttons">
             <button type="button" [class.selected]="extra===slot.enchantExtra" (click)="selectEnchantExtra(extra)"  *ngFor="let extra of masterDataService.getEnchant(slot.effectTypeId, slot.enchantBase).extra">{{extra}}{{masterDataService.getEffectType(slot.effectTypeId).unit}}</button>
         </div>
-    </fieldset>
+    </div>
 </section>
