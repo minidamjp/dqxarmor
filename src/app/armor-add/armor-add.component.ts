@@ -171,38 +171,19 @@ export class ArmorAddComponent implements OnInit {
     }
   }
 
-// 錬金効果を入れて同じ効果を押した場合の挙動
-// 錬金効果が入っているが効果数値は入っていない → 選択されていた効果をキャンセル（数値、補助数値はクリア
-// 錬金効果が入っていて効果数値も入っている → 次の錬金効果を入れたいとみなし次の行に設定する（次の行の数値、補助数値はクリア
-//                                         ３行目の場合には選択されていた効果をキャンセル（効果、数値、補助数値はクリア
-// 錬金効果をいれて別の効果を押した場合の挙動(currentSlotにまだデータが入ってなかったときも含む)
-// 錬金効果が入っているが効果数値は入っていない → 別の効果に上書き（数値、補助数値はクリア
-// 錬金効果が入っていて効果数値も入っている → 次の錬金効果を入れたいとみなし次の行に設定する（次の行の数値、補助数値はクリア
-//                                         ３行目の場合には選択されていた効果をキャンセル（効果、数値、補助数値はクリア
-
+// 効果を選択する際に
+// currentslotの効果、数値が入っていて、次行があって（３行目じゃない）、次行の錬金効果が入っていなかった場合のみ
+// 効果を選んだときに次行にcurrentがうつる
+// 入力をがんがんすすめるために
   selectEffectType(effectType: EffectType): void {
-    if (this.slots[this.currentSlot].effectTypeId === effectType.id){
-      if (this.slots[this.currentSlot].enchantBase === null){
-        this.slots[this.currentSlot].effectTypeId = null;
-      }else{
-        if (this.currentSlot !== 3){
-          this.currentSlot++;
-          this.slots[this.currentSlot].effectTypeId = effectType.id;
-        }else{
-          this.slots[this.currentSlot].effectTypeId = null;
-        }
-      }
+    if (this.slots[this.currentSlot].effectTypeId !== null
+      && this.slots[this.currentSlot].enchantBase !== null
+      && this.currentSlot < 2
+      && this.slots[this.currentSlot + 1].enchantBase === null){
+      this.currentSlot++;
+      this.slots[this.currentSlot].effectTypeId = effectType.id;
     }else{
-      if (this.slots[this.currentSlot].enchantBase === null){
-        this.slots[this.currentSlot].effectTypeId = effectType.id;
-      }else{
-        if (this.currentSlot !== 3){
-          this.currentSlot++;
-          this.slots[this.currentSlot].effectTypeId = effectType.id;
-        }else{
-          this.slots[this.currentSlot].effectTypeId = null;
-        }
-      }
+      this.slots[this.currentSlot].effectTypeId = effectType.id;
     }
     this.slots[this.currentSlot].enchantBase = null;
     this.slots[this.currentSlot].enchantExtra = null;
