@@ -5,10 +5,40 @@
 <button type="button" (click)="toggleConds()"><i class="fas fa-search-plus"></i>条件：</button>
 <div id="armor-search-condition" [class.hidden]="!showConds">
     <div class="condJob">
-        <button type="button" [class.active]="isJobActive(job.id)" (click)="onClickJobSearch(job.id);" *ngFor="let job of masterDataService.getJobs()"><i class="checked far fa-check-square"></i><i class="unchecked far fa-square"></i>{{job.abbr}}</button>
+        <div class="condHeader">職業</div>
+        <div class="condBody">
+            <button type="button" [class.active]="isJobActive(job.id)" (click)="onClickJobSearch(job.id);" *ngFor="let job of masterDataService.getJobs()"><i class="checked far fa-check-square"></i><i class="unchecked far fa-square"></i>{{job.abbr}}</button>
+        </div>
     </div>
     <div class="condEffect">
-        <button type="button" [class.active]="isEffectActive(effectType.id)" (click)="onClickEffectSearch(effectType.id);" *ngFor="let effectType of masterDataService.getAllEffectType()"><i class="checked far fa-check-square"></i><i class="unchecked far fa-square"></i>{{effectType.name}}</button>
+        <div class="condHeader">ガード</div>
+        <div class="condBody">
+            <button type="button" [class.active]="isEffectActive(effectType.id)" (click)="onClickEffectSearch(effectType.id);" *ngFor="let effectType of masterDataService.getEffectTypeForGroup('0')"><i class="checked far fa-check-square"></i><i class="unchecked far fa-square"></i>{{effectType.name}}</button>
+        </div>
+    </div>
+    <div class="condEffect">
+        <div class="condHeader">ステUP</div>
+        <div class="condBody">
+            <button type="button" [class.active]="isEffectActive(effectType.id)" (click)="onClickEffectSearch(effectType.id);" *ngFor="let effectType of masterDataService.getEffectTypeForGroup('1')"><i class="checked far fa-check-square"></i><i class="unchecked far fa-square"></i>{{effectType.name}}</button>
+        </div>
+    </div>
+    <div class="condEffect">
+        <div class="condHeader">ダメ減</div>
+        <div class="condBody">
+            <button type="button" [class.active]="isEffectActive(effectType.id)" (click)="onClickEffectSearch(effectType.id);" *ngFor="let effectType of masterDataService.getEffectTypeForGroup('4')"><i class="checked far fa-check-square"></i><i class="unchecked far fa-square"></i>{{effectType.name}}</button>
+        </div>
+    </div>
+    <div class="condEffect">
+        <div class="condHeader">攻撃時</div>
+        <div class="condBody">
+            <button type="button" [class.active]="isEffectActive(effectType.id)" (click)="onClickEffectSearch(effectType.id);" *ngFor="let effectType of masterDataService.getEffectTypeForGroup('2')"><i class="checked far fa-check-square"></i><i class="unchecked far fa-square"></i>{{effectType.name}}</button>
+        </div>
+    </div>
+    <div class="condEffect">
+        <div class="condHeader">開戦時</div>
+        <div class="condBody">
+            <button type="button" [class.active]="isEffectActive(effectType.id)" (click)="onClickEffectSearch(effectType.id);" *ngFor="let effectType of masterDataService.getEffectTypeForGroup('3')"><i class="checked far fa-check-square"></i><i class="unchecked far fa-square"></i>{{effectType.name}}</button>
+        </div>
     </div>
 </div>
 <ng-container *ngFor="let armor of getArmorList();">

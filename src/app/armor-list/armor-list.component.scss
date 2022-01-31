@@ -83,23 +83,25 @@ button:not(.active) i.checked {
 }
 .condJob{
 	display: flex;
-	align-content: flex-start;
-	flex-wrap: wrap;
 	align-items: center;
-	padding: 0.5em;
-	i {
-		margin-right: 0.25em;
-	}
 }
 
 .condEffect{
 	display: flex;
+	align-items: center;
+}
+
+.condHeader{
+	padding-top: 0.5em;
+	flex-basis: 3rem;
+	font-size: 0.8em;
+}
+.condBody{
+	display: flex;
 	align-content: flex-start;
 	flex-wrap: wrap;
-	align-items: center;
 	padding: 0.5em;
 	i {
 		margin-right: 0.25em;
 	}
 }
-

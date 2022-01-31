@@ -89,7 +89,7 @@ export class MasterDataService {
     for (const effectTypeId of part.effectTypeId){
       for (const effectType of EffectTypes){
         if (effectType.id === effectTypeId){
-        effectTypes.push(effectType);
+          effectTypes.push(effectType);
         }
       }
     }
@@ -107,6 +107,7 @@ export class MasterDataService {
       enchantList: [],
       id: '',
       name: '',
+      group: '',
       unit: '',
     };
   }
@@ -165,9 +166,19 @@ export class MasterDataService {
     return Jobs;
     }
 
-  getAllEffectType(): EffectType[] {
-    return EffectTypes;
+  getEffectTypeForGroup(type: string): EffectType[]{
+    if (type === null){
+      return [];
     }
+    const effectTypes: EffectType[] = [];
+    for (const effectType of EffectTypes){
+      if (effectType.group === type){
+        effectTypes.push(effectType);
+      }
+    }
+    return effectTypes;
+  }
+
 
 }
 
