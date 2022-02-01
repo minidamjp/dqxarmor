@@ -2,8 +2,13 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
 import { Armor } from '../models/armor';
+import { Series } from '../models/series';
 import { ArmorDataService } from '../services/armor-data.service';
 import { MasterDataService } from '../services/master-data.service';
+
+interface MatchArmor extends Armor {
+  matched?: boolean;
+}
 
 @Component({
   selector: 'app-armor-list',
@@ -20,14 +25,38 @@ export class ArmorListComponent implements OnInit {
   ) { }
 
   showConds = false;
-  serchJob: string[] = [];
-  serchEffect: string[] = [];
+  searchJob: string[] = [];
+  searchEffect: string[] = [];
+
 
   ngOnInit(): void {
   }
 
-  getArmorList(): Armor[] {
-    return this.armorDataService.getArmorList();
+  getArmorList(): MatchArmor[]{
+    const mArmor: MatchArmor[] = this.armorDataService.getArmorList();
+    if (!this.searchJob.length && !this.searchEffect.length){
+      return mArmor;
+    }else{
+      const displayArmor: MatchArmor[] = [];
+      for (const searchArmor of mArmor){
+        searchArmor.matched = false;
+        const series: Series = this.masterDataService.getSeriesById(searchArmor.armorTypeId.substring(6, 9));
+        for (const sjob of this.searchJob){
+          if (series.job.includes(sjob)){
+            searchArmor.matched = true;
+            displayArmor.push(searchArmor);
+          }
+        }
+      }
+      return displayArmor;
+    }
+  }
+
+  fixUpUndefined(x: any|undefined, v: any): any {
+    if (x === undefined) {
+      return v;
+    }
+    return x;
   }
 
   getArmorCount(): number {
@@ -47,33 +76,33 @@ export class ArmorListComponent implements OnInit {
   }
 
   onClickJobSearch(id: string): void{
-    for (const [idx, jobId] of this.serchJob.entries()){
+    for (const [idx, jobId] of this.searchJob.entries()){
       if (jobId === id){
-        this.serchJob.splice(idx, 1);
+        this.searchJob.splice(idx, 1);
         return;
       }
     }
-    this.serchJob.push(id);
-    this.serchJob.sort();
+    this.searchJob.push(id);
+    this.searchJob.sort();
   }
 
   isJobActive(id: string): boolean {
-    return (this.serchJob.includes(id));
+    return (this.searchJob.includes(id));
   }
 
   onClickEffectSearch(id: string): void{
-    for (const [idx, effectId] of this.serchEffect.entries()){
+    for (const [idx, effectId] of this.searchEffect.entries()){
       if (effectId === id){
-        this.serchEffect.splice(idx, 1);
+        this.searchEffect.splice(idx, 1);
         return;
       }
     }
-    this.serchEffect.push(id);
-    this.serchEffect.sort();
+    this.searchEffect.push(id);
+    this.searchEffect.sort();
   }
 
   isEffectActive(id: string): boolean {
-    return (this.serchEffect.includes(id));
+    return (this.searchEffect.includes(id));
   }
 
 }
