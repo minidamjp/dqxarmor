@@ -27,6 +27,7 @@ export class ArmorListComponent implements OnInit {
   showConds = false;
   searchJob: string[] = [];
   searchEffect: string[] = [];
+  cnt = 0;
 
 
   ngOnInit(): void {
@@ -37,18 +38,50 @@ export class ArmorListComponent implements OnInit {
     if (!this.searchJob.length && !this.searchEffect.length){
       return mArmor;
     }else{
-      const displayArmor: MatchArmor[] = [];
+      const displayArmorList: MatchArmor[] = [];
       for (const searchArmor of mArmor){
         searchArmor.matched = false;
-        const series: Series = this.masterDataService.getSeriesById(searchArmor.armorTypeId.substring(6, 9));
-        for (const sjob of this.searchJob){
-          if (series.job.includes(sjob)){
-            searchArmor.matched = true;
-            displayArmor.push(searchArmor);
+        if (this.searchJob.length){
+          const series: Series = this.masterDataService.getSeriesById(searchArmor.armorTypeId.substring(6, 9));
+          for (const sjob of this.searchJob){
+            if (series.job.includes(sjob)){
+              if (!this.searchEffect.length){
+                searchArmor.matched = true;
+                displayArmorList.push(searchArmor);
+              }else{
+                this.cnt = 0;
+                for (const sEffect of this.searchEffect){
+                  searchArmor.matched = false;
+                  for (const searchArmorEffect of searchArmor.effectList){
+                    if (sEffect === searchArmorEffect.effectTypeId){
+                      searchArmor.matched = true;
+                      this.cnt++;
+                    }
+                  }
+                }
+                if (this.cnt > 0){
+                displayArmorList.push(searchArmor);
+                }
+              }
+            }
+          }
+        }else{
+          this.cnt = 0;
+          for (const sEffect of this.searchEffect){
+            searchArmor.matched = false;
+            for (const searchArmorEffect of searchArmor.effectList){
+              if (sEffect === searchArmorEffect.effectTypeId){
+                searchArmor.matched = true;
+                this.cnt++;
+              }
+            }
+          }
+          if (this.cnt > 0){
+          displayArmorList.push(searchArmor);
           }
         }
       }
-      return displayArmor;
+      return displayArmorList;
     }
   }
 
