@@ -77,7 +77,7 @@ export class ArmorListComponent implements OnInit {
             }
           }
           if (this.cnt > 0){
-          displayArmorList.push(searchArmor);
+            displayArmorList.push(searchArmor);
           }
         }
       }

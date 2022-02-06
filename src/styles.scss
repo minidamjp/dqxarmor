@@ -1,5 +1,9 @@
 /* You can add global styles to this file, and also import other style files */
 @import "~@fortawesome/fontawesome-free/css/all.css";
+@font-face {
+    font-family: 'dqxarmor';
+    src: url('assets/armor_icon.woff2') format('woff2'), url('assets/armor_icon.woff') format('woff');
+}
 
 body{
 /*
@@ -39,3 +43,7 @@ footer div{
     margin-left: 1rem;
     margin-right: 1rem;
 }
+
+.dqxarmor-icon {
+    font-family: dqxarmor;
+  }

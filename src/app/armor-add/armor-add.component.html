@@ -21,7 +21,7 @@
     <div class="container">
         <span class="title"><h2>装備部位</h2></span>
         <div class="buttons">
-            <button type="button" [class.hidden]="selectedSeries!==null && selectedSeries.noPartsList.includes(part.id)" [class.selected]="part.id===selectedPart?.id" (click)="selectPart(part)"  *ngFor="let part of masterDataService.getParts()">{{part.name}}</button>
+            <button type="button" [attr.data-armor-type]="part.id" [class.hidden]="selectedSeries!==null && selectedSeries.noPartsList.includes(part.id)" [class.selected]="part.id===selectedPart?.id" (click)="selectPart(part)"  *ngFor="let part of masterDataService.getParts()">{{part.name}}</button>
         </div>
     </div>
 </section>
