@@ -105,7 +105,7 @@ export const EffectTypes: EffectType[] = [
         {base: 40, extra: [2, 4, 6, 8, 10, -30] },
         {base: 20, extra: [2, 3, 4, 6, 8, 10, -15] },
     ]},
-    {id: '022', name: '幻惑', group: '0', unit: '%', displayName: '%name%ガード +%enchantBase%%enchantExtra%', enchantList: [
+    {id: '022', name: '幻惑', group: '0', unit: '%', displayName: '%name%ガード +%enchantBase%%enchantExtra%%unit%', enchantList: [
         {base: 60, extra: [2, 4, 6, 8, 10, -45] },
         {base: 40, extra: [2, 4, 6, 8, 10, -30] },
         {base: 20, extra: [2, 3, 4, 6, 8, 10, -15] },
