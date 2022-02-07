@@ -1,7 +1,11 @@
+import { of } from 'rxjs';
+
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
 import { Armor } from '../models/armor';
+import { EffectType } from '../models/effect_type';
+import { Job } from '../models/job';
 import { Series } from '../models/series';
 import { ArmorDataService } from '../services/armor-data.service';
 import { MasterDataService } from '../services/master-data.service';
@@ -25,8 +29,8 @@ export class ArmorListComponent implements OnInit {
   ) { }
 
   showConds = false;
-  searchJob: string[] = [];
-  searchEffect: string[] = [];
+  searchJob: Job[] = [];
+  searchEffect: EffectType[] = [];
   cnt = 0;
 
 
@@ -44,16 +48,17 @@ export class ArmorListComponent implements OnInit {
         if (this.searchJob.length){
           const series: Series = this.masterDataService.getSeriesById(searchArmor.armorTypeId.substring(6, 9));
           for (const sjob of this.searchJob){
-            if (series.job.includes(sjob)){
+            if (series.job.includes(sjob.id)){
               if (!this.searchEffect.length){
                 searchArmor.matched = true;
                 displayArmorList.push(searchArmor);
+                break;
               }else{
                 this.cnt = 0;
                 for (const sEffect of this.searchEffect){
                   searchArmor.matched = false;
                   for (const searchArmorEffect of searchArmor.effectList){
-                    if (sEffect === searchArmorEffect.effectTypeId){
+                    if (sEffect.id === searchArmorEffect.effectTypeId){
                       searchArmor.matched = true;
                       this.cnt++;
                     }
@@ -70,7 +75,7 @@ export class ArmorListComponent implements OnInit {
           for (const sEffect of this.searchEffect){
             searchArmor.matched = false;
             for (const searchArmorEffect of searchArmor.effectList){
-              if (sEffect === searchArmorEffect.effectTypeId){
+              if (sEffect.id === searchArmorEffect.effectTypeId){
                 searchArmor.matched = true;
                 this.cnt++;
               }
@@ -108,34 +113,52 @@ export class ArmorListComponent implements OnInit {
     this.showConds = !this.showConds;
   }
 
-  onClickJobSearch(id: string): void{
-    for (const [idx, jobId] of this.searchJob.entries()){
-      if (jobId === id){
+  onClickJobSearch(id: string): string{
+    for (const [idx, job] of this.searchJob.entries()){
+      if (job.id === id){
         this.searchJob.splice(idx, 1);
-        return;
+        return job.abbr;
       }
     }
-    this.searchJob.push(id);
-    this.searchJob.sort();
+    for (const jobList of this.masterDataService.getJobs()){
+      if (jobList.id === id){
+        this.searchJob.push(jobList);
+        this.searchJob.sort();
+        return jobList.abbr;
+      }
+    }
+    return '';
   }
 
   isJobActive(id: string): boolean {
-    return (this.searchJob.includes(id));
-  }
-
-  onClickEffectSearch(id: string): void{
-    for (const [idx, effectId] of this.searchEffect.entries()){
-      if (effectId === id){
-        this.searchEffect.splice(idx, 1);
-        return;
+    for (const job of this.searchJob){
+      if (job.id === id){
+        return true;
       }
     }
-    this.searchEffect.push(id);
-    this.searchEffect.sort();
+    return false;
   }
 
-  isEffectActive(id: string): boolean {
-    return (this.searchEffect.includes(id));
+  onClickEffectSearch(id: string): string{
+    for (const [idx, effect] of this.searchEffect.entries()){
+      if (effect.id === id){
+        this.searchEffect.splice(idx, 1);
+        return effect.displayName;
+      }
+    }
+    const effectType = this.masterDataService.getEffectType(id);
+    this.searchEffect.push(effectType);
+    this.searchEffect.sort();
+    return effectType.displayName;
+    }
+
+  isEffectActive(id: string): boolean{
+    for (const effect of this.searchEffect){
+      if (effect.id === id){
+        return true;
+      }
+    }
+    return false;
   }
 
 }

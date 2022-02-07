@@ -2,7 +2,11 @@
     <a routerLink="a/new"><i class="far fa-plus-square"></i>新規追加</a>
 </div>
 <h1>装備一覧({{getArmorCount()}})</h1>
-<button type="button" (click)="toggleConds()"><i class="fas fa-search-plus"></i>条件：</button>
+<div id="armor-search">
+    <button type="button" (click)="toggleConds()"><i class="fas fa-search-plus"></i>条件：</button>
+    <ng-container *ngFor="let job of searchJob"><span>{{job.abbr}}<button type="button" (click)="onClickJobSearch(job.id);"><i class="fas fa-times-circle"></i></button></span></ng-container>
+    <ng-container *ngFor="let effectType of searchEffect"><span>{{effectType.name}}<button type="button" (click)="onClickEffectSearch(effectType.id);"><i class="fas fa-times-circle"></i></button></span></ng-container>
+</div>
 <div id="armor-search-condition" [class.hidden]="!showConds">
     <div class="condJob">
         <div class="condHeader">職業</div>
