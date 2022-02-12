@@ -48,6 +48,41 @@ button{
 	padding-left: 0.25em;
 	padding-right: 0.25em;
 	background-color: #000;
+	& [data-armor-type="0"]:before {
+		font-family: dqxarmor;
+		content: "A";
+		margin-right: 0.5em;
+		color: #f5ae51;
+		font-size: 1.2em;
+	}
+	& [data-armor-type="1"]:before {
+		font-family: dqxarmor;
+		content: "B";
+		margin-right: 0.5em;
+		color: #f5ae51;
+		font-size: 1.2em;
+	}
+	& [data-armor-type="2"]:before {
+		font-family: dqxarmor;
+		content: "C";
+		margin-right: 0.5em;
+		color: #f5ae51;
+		font-size: 1.2em;
+	}
+	& [data-armor-type="3"]:before {
+		font-family: dqxarmor;
+		content: "D";
+		margin-right: 0.5em;
+		color: #f5ae51;
+		font-size: 1.2em;
+	}
+	& [data-armor-type="4"]:before {
+		font-family: dqxarmor;
+		content: "E";
+		margin-right: 0.5em;
+		color: #f5ae51;
+		font-size: 1.2em;
+	}
 	h3{
 		display: inline-block;
 		margin: 0;
@@ -59,7 +94,7 @@ button{
 			color: inherit;
 			background-color: #000;	
 			margin-right: 0.25rem;
-			margin-left: 0.5rem;
+			margin-left: 0.25rem;
 		}
 	}
 }
@@ -93,8 +128,8 @@ button:not(.active) i.checked {
 
 .condHeader{
 	padding-top: 0.5em;
-	flex-basis: 3rem;
 	font-size: 0.8em;
+	min-width: 4em;
 }
 .condBody{
 	display: flex;

@@ -46,6 +46,7 @@
         <span class="title">
             <h3>{{masterDataService.getArmorType(armor.armorTypeId).name}}</h3>
             <div class="armor-ops">
+                <button [attr.data-armor-type]="armor.partId"></button>
                 <button type="button" (click)="onClickUpdate(armor.id);"><i class="fas fa-pencil-alt"></i></button>
                 <button type="button" (click)="onClickDelete(armor.id);"><i class="fas fa-trash-alt"></i></button>
             </div>

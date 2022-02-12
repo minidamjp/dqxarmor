@@ -8,6 +8,7 @@ import { MasterDataService } from '../services/master-data.service';
 
 interface MatchArmor extends Armor {
   matched?: boolean;
+  partId?: string;
 }
 
 @Component({
@@ -36,7 +37,12 @@ export class ArmorListComponent implements OnInit {
   getArmorList(): MatchArmor[]{
     const mArmor: MatchArmor[] = this.armorDataService.getArmorList();
     if (!this.searchJob.length && !this.searchEffect.length){
-      return mArmor;
+      const displayArmorList: MatchArmor[] = [];
+      for (const searchArmor of mArmor){
+        searchArmor.partId = searchArmor.armorTypeId.substring(4, 5);
+        displayArmorList.push(searchArmor);
+      }
+      return displayArmorList;
     }else{
       const displayArmorList: MatchArmor[] = [];
       for (const searchArmor of mArmor){
@@ -47,6 +53,7 @@ export class ArmorListComponent implements OnInit {
             if (series.job.includes(sjob)){
               if (!this.searchEffect.length){
                 searchArmor.matched = true;
+                searchArmor.partId = searchArmor.armorTypeId.substring(4, 5);
                 displayArmorList.push(searchArmor);
               }else{
                 this.cnt = 0;
@@ -60,7 +67,8 @@ export class ArmorListComponent implements OnInit {
                   }
                 }
                 if (this.cnt > 0){
-                displayArmorList.push(searchArmor);
+                  searchArmor.partId = searchArmor.armorTypeId.substring(4, 5);
+                  displayArmorList.push(searchArmor);
                 }
               }
             }
@@ -77,6 +85,7 @@ export class ArmorListComponent implements OnInit {
             }
           }
           if (this.cnt > 0){
+            searchArmor.partId = searchArmor.armorTypeId.substring(4, 5);
             displayArmorList.push(searchArmor);
           }
         }
