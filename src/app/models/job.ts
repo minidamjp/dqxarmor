@@ -8,5 +8,4 @@
     abbr: string;
     // 職：戦士とか
     name: string;
-
 }
