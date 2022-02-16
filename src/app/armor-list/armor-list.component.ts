@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
 import { Armor } from '../models/armor';
+import { Exportdata } from '../models/exportdata';
 import { Series } from '../models/series';
 import { ArmorDataService } from '../services/armor-data.service';
 import { MasterDataService } from '../services/master-data.service';
@@ -29,9 +30,29 @@ export class ArmorListComponent implements OnInit {
   searchJob: string[] = [];
   searchEffect: string[] = [];
   cnt = 0;
+  isShowExport = false;
+  exportUrl = '';
+  decodedArmorData?: Exportdata;
+
+
+  @ViewChild('exportUrlElement')
+  exportUrlElement?: ElementRef;
 
 
   ngOnInit(): void {
+    const b64data: string|null = this.activatedRoute.snapshot.params.armorList;
+    if (b64data != null) {
+      const b = this.armorDataService.import(b64data);
+      if (b == null) {
+        this.router.navigate(['/']);
+      } else {
+        this.decodedArmorData = b;
+      }
+    }
+  }
+
+  isImportMode(): boolean {
+    return this.decodedArmorData != null;
   }
 
   getArmorList(): MatchArmor[]{
@@ -146,5 +167,37 @@ export class ArmorListComponent implements OnInit {
   isEffectActive(id: string): boolean {
     return (this.searchEffect.includes(id));
   }
+
+  onClickExport(e: Event): void{
+    const armorList = this.armorDataService.getArmorList();
+    const charName = '';
+    const exportArmor = this.armorDataService.export(charName, armorList);
+    const path = this.router.serializeUrl(this.router.createUrlTree(['i', exportArmor]));
+    this.exportUrl = location.origin + path;
+    this.isShowExport = true;
+  }
+
+  onClickCloseExport(): void{
+    this.isShowExport = false;
+  }
+
+  copyToClickborad(): void{
+    navigator.clipboard.writeText(this.exportUrl);
+    if (this.exportUrlElement){
+      this.exportUrlElement.nativeElement.select();
+    }
+  }
+
+  onClickImportYes(): void{
+    if (this.decodedArmorData) {
+      this.armorDataService.overwriteArmorData(this.decodedArmorData.exportArmorList);
+    }
+    this.router.navigate(['']);
+  }
+
+  onClickImportNo(): void{
+    this.router.navigate(['']);
+  }
+
 
 }

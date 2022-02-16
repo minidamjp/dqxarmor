@@ -1,6 +1,16 @@
+<header>
+    <div><a href="#" (click)="onClickExport($event)"><i class="fas fa-external-link-alt"></i>エクスポート</a></div>
+</header>
 <div id="add">
     <a routerLink="a/new"><i class="far fa-plus-square"></i>新規追加</a>
 </div>
+<section id="import" *ngIf="isImportMode()">
+    <div class="message">このデータで上書きしますか？</div>
+    <ul class="yesno">
+        <li class="yes"><button type="button" (click)="onClickImportYes();">はい</button></li>
+        <li><button type="button" (click)="onClickImportNo();">いいえ</button></li>
+    </ul>
+</section>
 <h1>装備一覧({{getArmorCount()}})</h1>
 <button type="button" (click)="toggleConds()"><i class="fas fa-search-plus"></i>条件：</button>
 <div id="armor-search-condition" [class.hidden]="!showConds">
@@ -58,3 +68,10 @@
         </div>
     </div>
 </ng-container>
+<section id="export" [class.show]="isShowExport" (click)="onClickCloseExport()">
+    <div class="modal" (click)="$event.stopPropagation()">
+        <div><textarea cols="50" rows="10" #exportUrlElement readonly (click)="copyToClickborad()">{{exportUrl}}</textarea></div>
+        <div><button class="button" type="button" (click)="copyToClickborad()"><i class="far fa-clipboard"></i>クリップボードにコピー</button></div>
+        <div><a class="button" href="{{exportUrl}}" target="_blank"><i class="fas fa-external-link-alt"></i>リンクを別タブで開く</a></div>
+    </div>
+</section>

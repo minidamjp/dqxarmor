@@ -4,6 +4,7 @@ import { Injectable } from '@angular/core';
 
 import { Armor } from '../models/armor';
 import { Effect } from '../models/effect';
+import { Exportdata } from '../models/exportdata';
 
 @Injectable({
   providedIn: 'root'
@@ -238,5 +239,10 @@ export class ArmorDataService {
       name,
       armorList,
     ];
+  }
+
+  public overwriteArmorData(exportArmorList: Armor[]): void {
+    this.armorList = exportArmorList;
+    this.saveArmor();
   }
 }
