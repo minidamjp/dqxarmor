@@ -2,7 +2,6 @@ import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
 import { Armor } from '../models/armor';
-import { Exportdata } from '../models/exportdata';
 import { Series } from '../models/series';
 import { ArmorDataService } from '../services/armor-data.service';
 import { MasterDataService } from '../services/master-data.service';
@@ -32,30 +31,36 @@ export class ArmorListComponent implements OnInit {
   cnt = 0;
   isShowExport = false;
   exportUrl = '';
-  decodedArmorData?: Exportdata;
-
+  decodedArmorData: Armor[] = [];
 
   @ViewChild('exportUrlElement')
   exportUrlElement?: ElementRef;
 
 
   ngOnInit(): void {
-    const b64data: string|null = this.activatedRoute.snapshot.params.armorList;
+    const b64data: string|null = this.activatedRoute.snapshot.params.armorData;
     if (b64data != null) {
       const b = this.armorDataService.import(b64data);
       if (b == null) {
         this.router.navigate(['/']);
       } else {
-        this.decodedArmorData = b;
+        this.decodedArmorData = b[1];
       }
     }
   }
 
   isImportMode(): boolean {
-    return this.decodedArmorData != null;
+    if (this.decodedArmorData.length === 0){
+      return false;
+    }else{
+      return true;
+    }
   }
 
   getArmorList(): MatchArmor[]{
+    if (this.isImportMode()){
+      return this.decodedArmorData;
+    }
     const mArmor: MatchArmor[] = this.armorDataService.getArmorList();
     if (!this.searchJob.length && !this.searchEffect.length){
       const displayArmorList: MatchArmor[] = [];
@@ -168,7 +173,7 @@ export class ArmorListComponent implements OnInit {
     return (this.searchEffect.includes(id));
   }
 
-  onClickExport(e: Event): void{
+  onClickExport(): void{
     const armorList = this.armorDataService.getArmorList();
     const charName = '';
     const exportArmor = this.armorDataService.export(charName, armorList);
@@ -190,7 +195,7 @@ export class ArmorListComponent implements OnInit {
 
   onClickImportYes(): void{
     if (this.decodedArmorData) {
-      this.armorDataService.overwriteArmorData(this.decodedArmorData.exportArmorList);
+      this.armorDataService.overwriteArmorData(this.decodedArmorData);
     }
     this.router.navigate(['']);
   }

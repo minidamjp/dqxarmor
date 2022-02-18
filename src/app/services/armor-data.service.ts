@@ -4,7 +4,6 @@ import { Injectable } from '@angular/core';
 
 import { Armor } from '../models/armor';
 import { Effect } from '../models/effect';
-import { Exportdata } from '../models/exportdata';
 
 @Injectable({
   providedIn: 'root'
@@ -124,7 +123,6 @@ export class ArmorDataService {
     //     enchantExtra (1bytes) nullの場合は0
     const version = 0;
     const buffer: number[] = [];
-    buffer.push(0);
     buffer.push(version);
 
     this.writeString(name, buffer);
@@ -213,12 +211,13 @@ export class ArmorDataService {
       const [id, idOffset] = this.readAsciiString(buffer.subarray(pos));
       pos += idOffset;
       const [armorTypeId, armorTypeIdOffset] = this.readAsciiString(buffer.subarray(pos));
-      pos += idOffset;
+      pos += armorTypeIdOffset;
 
       const effectList: Effect[] = [];
       const effectNum = buffer[pos++];
       for (let i = 0; i < effectNum; ++i) {
         const [effectTypeId, effectTypeIdOffset] = this.readAsciiString(buffer.subarray(pos));
+        pos += effectTypeIdOffset;
         const enchantBase = buffer[pos++];
         const enchantExtra = buffer[pos++];
         effectList.push({

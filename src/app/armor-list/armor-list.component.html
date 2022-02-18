@@ -1,5 +1,5 @@
-<header>
-    <div><a href="#" (click)="onClickExport($event)"><i class="fas fa-external-link-alt"></i>エクスポート</a></div>
+<header *ngIf="!isImportMode()">
+    <div><a href="#" (click)="onClickExport()"><i class="fas fa-external-link-alt"></i>エクスポート</a></div>
 </header>
 <div id="add">
     <a routerLink="a/new"><i class="far fa-plus-square"></i>新規追加</a>

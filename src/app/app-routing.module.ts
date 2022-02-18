@@ -7,6 +7,7 @@ import { ArmorListComponent } from './armor-list/armor-list.component';
 const routes: Routes = [
   { path: 'a/new', component: ArmorAddComponent },
   { path: 'a/:id', component: ArmorAddComponent },
+  { path: 'i/:armorData', component: ArmorListComponent },
   { path: '', component: ArmorListComponent },
 
 ];
