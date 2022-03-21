@@ -227,4 +227,34 @@ export const ArmorTypes: ArmorType[] = [
     {partId: '4', seriesId: '039', id: '110-4-039', name: 'グレイスフルブーツ'},
     {partId: '4', seriesId: '040', id: '110-4-040', name: '妖炎魔女のパンプス'},
 
+    {partId: '0', seriesId: '041', id: '115-0-041', name: '蒼穹兵団のかぶと'},
+    {partId: '0', seriesId: '042', id: '115-0-042', name: '聖域の額当て'},
+    {partId: '0', seriesId: '043', id: '115-0-043', name: '空賊のバンダナ'},
+    {partId: '0', seriesId: '044', id: '115-0-044', name: '聖翼の髪飾り'},
+    {partId: '0', seriesId: '045', id: '115-0-045', name: 'ロードリーコサージ'},
+
+    {partId: '1', seriesId: '041', id: '115-1-041', name: '蒼穹兵団のよろい上'},
+    {partId: '1', seriesId: '042', id: '115-1-042', name: '聖域の闘衣上'},
+    {partId: '1', seriesId: '043', id: '115-1-043', name: '空賊のシャツ'},
+    {partId: '1', seriesId: '044', id: '115-1-044', name: '聖翼のドレス上'},
+    {partId: '1', seriesId: '045', id: '115-1-045', name: 'ロードリーローブ上'},
+
+    {partId: '2', seriesId: '041', id: '115-2-041', name: '蒼穹兵団のよろい下'},
+    {partId: '2', seriesId: '042', id: '115-2-042', name: '聖域の闘衣下'},
+    {partId: '2', seriesId: '043', id: '115-2-043', name: '空賊のズボン'},
+    {partId: '2', seriesId: '044', id: '115-2-044', name: '聖翼のドレス下'},
+    {partId: '2', seriesId: '045', id: '115-2-045', name: 'ロードリーローブ下'},
+
+    {partId: '3', seriesId: '041', id: '115-3-041', name: '蒼穹兵団のこて'},
+    {partId: '3', seriesId: '042', id: '115-3-042', name: '聖域のこて'},
+    {partId: '3', seriesId: '043', id: '115-3-043', name: '空賊のグローブ'},
+    {partId: '3', seriesId: '044', id: '115-3-044', name: '聖翼のグローブ'},
+    {partId: '3', seriesId: '045', id: '115-3-045', name: 'ロードリーグローブ'},
+
+    {partId: '4', seriesId: '041', id: '115-4-041', name: '蒼穹兵団のグリーブ'},
+    {partId: '4', seriesId: '042', id: '115-4-042', name: '聖域のブーツ'},
+    {partId: '4', seriesId: '043', id: '115-4-043', name: '空賊のブーツ'},
+    {partId: '4', seriesId: '044', id: '115-4-044', name: '聖翼のブーツ'},
+    {partId: '4', seriesId: '045', id: '115-4-045', name: 'ロードリーブーツ'},
+
 ];
