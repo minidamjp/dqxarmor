@@ -15,7 +15,7 @@ export class ArmorDataService {
   constructor() {
     const j: string|null = localStorage.getItem('Armor');
     if (j !== null){
-      this.armorList = JSON.parse(j);
+      this.armorList = this.fixArmorList(JSON.parse(j));
     }
   }
 
@@ -144,8 +144,12 @@ export class ArmorDataService {
         this.writeAsciiString(effect.effectTypeId!, buffer);
         // tslint:disable-next-line: no-bitwise
         buffer.push((effect.enchantBase !== null ? effect.enchantBase : 0) & 0xff);
+        let enchantExtra = effect.enchantExtra !== null ? effect.enchantExtra : 0;
+        if (enchantExtra < 0) {
+          enchantExtra = enchantExtra + 256;
+        }
         // tslint:disable-next-line: no-bitwise
-        buffer.push((effect.enchantExtra !== null ? effect.enchantExtra : 0) & 0xff);
+        buffer.push(enchantExtra & 0xff);
       }
     }
 
@@ -219,7 +223,10 @@ export class ArmorDataService {
         const [effectTypeId, effectTypeIdOffset] = this.readAsciiString(buffer.subarray(pos));
         pos += effectTypeIdOffset;
         const enchantBase = buffer[pos++];
-        const enchantExtra = buffer[pos++];
+        let enchantExtra = buffer[pos++];
+        if (enchantExtra >= 128) {
+          enchantExtra = enchantExtra - 256;
+        }
         effectList.push({
           effectTypeId,
           enchantBase,
@@ -236,12 +243,23 @@ export class ArmorDataService {
 
     return [
       name,
-      armorList,
+      this.fixArmorList(armorList),
     ];
   }
 
   public overwriteArmorData(exportArmorList: Armor[]): void {
     this.armorList = exportArmorList;
     this.saveArmor();
+  }
+
+  private fixArmorList(armorList: Armor[]): Armor[] {
+    for (const armor of armorList) {
+      for (const effectList of armor.effectList) {
+        if (effectList.enchantExtra && effectList.enchantExtra >= 128) {
+          effectList.enchantExtra -= 256;
+        }
+      }
+    }
+    return armorList;
   }
 }
