@@ -197,10 +197,12 @@ export class ArmorListComponent implements OnInit {
     if (this.decodedArmorData) {
       this.armorDataService.overwriteArmorData(this.decodedArmorData);
     }
+    this.decodedArmorData = [];
     this.router.navigate(['']);
   }
 
   onClickImportNo(): void{
+    this.decodedArmorData = [];
     this.router.navigate(['']);
   }
 
