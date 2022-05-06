@@ -109,6 +109,10 @@ button{
 	margin-left: 1rem;
 }
 
+button.active {
+	background: linear-gradient(transparent 20%, #8fe6f1 90%, transparent 20%);
+}
+
 button.active i.unchecked {
 	display: none;
 }
