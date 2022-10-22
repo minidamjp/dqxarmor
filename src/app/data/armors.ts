@@ -257,4 +257,32 @@ export const ArmorTypes: ArmorType[] = [
     {partId: '4', seriesId: '044', id: '115-4-044', name: '聖翼のブーツ'},
     {partId: '4', seriesId: '045', id: '115-4-045', name: 'ロードリーブーツ'},
 
+    {partId: '0', seriesId: '046', id: '118-0-046', name: 'ほのおのかぶと'},
+    {partId: '0', seriesId: '048', id: '118-0-048', name: 'しっこくのターバン'},
+    {partId: '0', seriesId: '049', id: '118-0-049', name: 'スパングルフェザー'},
+    {partId: '0', seriesId: '050', id: '118-0-050', name: 'ふしぎなぼうし'},
+
+    {partId: '1', seriesId: '046', id: '118-1-046', name: 'ほのおのよろい上'},
+    {partId: '1', seriesId: '047', id: '118-1-047', name: '天の冒険者のころも'},
+    {partId: '1', seriesId: '048', id: '118-1-048', name: 'しっこくのマント'},
+    {partId: '1', seriesId: '049', id: '118-1-049', name: 'スパングルドレス上'},
+    {partId: '1', seriesId: '050', id: '118-1-050', name: 'ふしぎなボレロ上'},
+
+    {partId: '2', seriesId: '046', id: '118-2-046', name: 'ほのおのよろい下'},
+    {partId: '2', seriesId: '047', id: '118-2-047', name: '天の冒険者のズボン'},
+    {partId: '2', seriesId: '049', id: '118-2-049', name: 'スパングルドレス下'},
+    {partId: '2', seriesId: '050', id: '118-2-050', name: 'ふしぎなボレロ下'},
+
+    {partId: '3', seriesId: '046', id: '118-3-046', name: 'ほのおのこて'},
+    {partId: '3', seriesId: '047', id: '118-3-047', name: '天の冒険者のグラブ'},
+    {partId: '3', seriesId: '048', id: '118-3-048', name: 'しっこくのグローブ'},
+    {partId: '3', seriesId: '049', id: '118-3-049', name: 'スパングルグローブ'},
+    {partId: '3', seriesId: '050', id: '118-3-050', name: 'ふしぎなグローブ'},
+
+    {partId: '4', seriesId: '046', id: '118-4-046', name: 'ほのおのグリーブ'},
+    {partId: '4', seriesId: '047', id: '118-4-047', name: '天の冒険者のブーツ'},
+    {partId: '4', seriesId: '048', id: '118-4-048', name: 'しっこくのブーツ'},
+    {partId: '4', seriesId: '049', id: '118-4-049', name: 'スパングルパンプス'},
+    {partId: '4', seriesId: '050', id: '118-4-050', name: 'ふしぎなブーツ'},
+
 ];
