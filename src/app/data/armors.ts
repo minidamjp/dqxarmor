@@ -285,4 +285,33 @@ export const ArmorTypes: ArmorType[] = [
     {partId: '4', seriesId: '049', id: '118-4-049', name: 'スパングルパンプス'},
     {partId: '4', seriesId: '050', id: '118-4-050', name: 'ふしぎなブーツ'},
 
+    {partId: '0', seriesId: '051', id: '120-0-051', name: '魔衛隊士のかぶと'},
+    {partId: '0', seriesId: '052', id: '120-0-052', name: 'イグナイトバンド'},
+    {partId: '0', seriesId: '053', id: '120-0-053', name: '乱破の額当て'},
+    {partId: '0', seriesId: '054', id: '120-0-054', name: 'プロディトヘッド'},
+    {partId: '0', seriesId: '055', id: '120-0-055', name: 'オスクトルクラウン'},
+
+    {partId: '1', seriesId: '051', id: '120-1-051', name: '魔衛隊士のよろい上'},
+    {partId: '1', seriesId: '052', id: '120-1-052', name: 'イグナイトメイル上'},
+    {partId: '1', seriesId: '053', id: '120-1-053', name: '乱破の忍び装束上'},
+    {partId: '1', seriesId: '054', id: '120-1-054', name: 'プロディトスーツ上'},
+    {partId: '1', seriesId: '055', id: '120-1-055', name: 'オスクトルローブ上'},
+
+    {partId: '2', seriesId: '051', id: '120-2-051', name: '魔衛隊士のよろい下'},
+    {partId: '2', seriesId: '052', id: '120-2-052', name: 'イグナイトメイル下'},
+    {partId: '2', seriesId: '053', id: '120-2-053', name: '乱破の忍び装束下'},
+    {partId: '2', seriesId: '054', id: '120-2-054', name: 'プロディトスーツ下'},
+    {partId: '2', seriesId: '055', id: '120-2-055', name: 'オスクトルローブ下'},
+
+    {partId: '3', seriesId: '051', id: '120-3-051', name: '魔衛隊士のこて'},
+    {partId: '3', seriesId: '052', id: '120-3-052', name: 'イグナイトグローブ'},
+    {partId: '3', seriesId: '053', id: '120-3-053', name: '乱破の手甲'},
+    {partId: '3', seriesId: '054', id: '120-3-054', name: 'プロディトグローブ'},
+    {partId: '3', seriesId: '055', id: '120-3-055', name: 'オスクトルグローブ'},
+
+    {partId: '4', seriesId: '051', id: '120-4-051', name: '魔衛隊士のグリーブ'},
+    {partId: '4', seriesId: '052', id: '120-4-052', name: 'イグナイトグリーブ'},
+    {partId: '4', seriesId: '053', id: '120-4-053', name: '乱破の脚半'},
+    {partId: '4', seriesId: '054', id: '120-4-054', name: 'プロディトシューズ'},
+    {partId: '4', seriesId: '055', id: '120-4-055', name: 'オスクトルブーツ'},
 ];

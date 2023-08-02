@@ -22,5 +22,6 @@ export const Jobs: Job[] = [
     {id: '18', abbr: 'デス',  name: 'デスマスター'},
     {id: '19', abbr: '魔剣',  name: '魔剣士'},
     {id: '20', abbr: '海賊',  name: '海賊'},
+    {id: '21', abbr: 'ガデ',  name: 'ガーディアン'},
 
 ];
